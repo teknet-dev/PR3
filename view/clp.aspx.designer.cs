@@ -283,6 +283,15 @@ namespace PR3.view {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
         /// TextBox4 control.
         /// </summary>
         /// <remarks>
@@ -373,6 +382,15 @@ namespace PR3.view {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
+        /// Label9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
+        
+        /// <summary>
         /// UpdatePanel4 control.
         /// </summary>
         /// <remarks>
@@ -400,6 +418,15 @@ namespace PR3.view {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
+        /// Label12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label12;
+        
+        /// <summary>
         /// test control.
         /// </summary>
         /// <remarks>
@@ -418,6 +445,15 @@ namespace PR3.view {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
+        /// Label13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label13;
+        
+        /// <summary>
         /// haute control.
         /// </summary>
         /// <remarks>
@@ -434,6 +470,15 @@ namespace PR3.view {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label7;
+        
+        /// <summary>
+        /// Label14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
         /// UpdatePanel5 control.

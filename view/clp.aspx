@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="clp.aspx.cs" Inherits="PR3.view.pr3" EnableEventValidation="false" %>
-<%@ Register TagPrefix="ce" Namespace="Grids" Assembly="ControlExtensions" %>
+
 
 <!DOCTYPE html>
 
