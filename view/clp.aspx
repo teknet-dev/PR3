@@ -155,9 +155,7 @@
                </asp:Label>                
              </td>
              <td class="auto-style26">
-                 <div class="btn btn-primary">
-                      <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..."  OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
-                 </div>
+                      <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
              </td>
            </tr>
                         
@@ -341,9 +339,9 @@
                         <td class="auto-style19" />
                         
                         <td class="auto-style19">
-                            <div class=" btn btn-primary">
-                               <asp:Button ID="Button1" runat="server"  OnClick="Button1_Click" Text="Calcul" Width="280px" Height="40px" />
-                           </div>
+                            
+                               <asp:Button ID="Button1" runat="server" class=" btn btn-primary" OnClick="Button1_Click" Text="Calcul" Width="280px" Height="40px" />
+                           
                         </td>
                     </tr>
                 </table>
