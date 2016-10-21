@@ -252,7 +252,7 @@
     <Content Include="library\font\advanced_dot_digital-7.ttf" />
     <Content Include="library\font\enhanced_dot_digital-7.ttf" />
     <Content Include="library\font\triple_dot_digital-7.ttf" />
-    <None Include="Properties\PublishProfiles\deployPR3-64.pubxml" />
+    <None Include="Properties\PublishProfiles\deploy-PR3x64.pubxml" />
     <None Include="Properties\PublishProfiles\deploypr3.pubxml" />
     <None Include="Properties\PublishProfiles\pack.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
