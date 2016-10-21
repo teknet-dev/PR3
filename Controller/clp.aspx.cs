@@ -22,8 +22,6 @@ namespace PR3.view
             string confilename, confilepath;
             string fileName = Path.GetFileName(imgUpload.ImageUrl);
             string filePath = Path.Combine(Server.MapPath("~/img"), fileName);
-            string cropFileName = "";
-            string cropFilePath = "";
             if (File.Exists(filePath))
             {
 
@@ -58,9 +56,8 @@ namespace PR3.view
                     cropimg.Src = "~/cropimg/" + confilename;
                     panCrop.Visible = false;
                 }
-                catch (Exception ex)
+                catch
                 {
-
                     throw;
                 }
 
@@ -82,19 +79,15 @@ namespace PR3.view
                     uploadFilePath = Path.Combine(Server.MapPath("~/img"), uploadFileName);
                     try
                     {
-
-
                         FU1.SaveAs(uploadFilePath);
                         imgUpload.ImageUrl = "~/img/" + uploadFileName;
                         panCrop.Visible = true;
                         btnCrop.Visible = true;
                         cropimg.Visible = false;
                     }
-                    catch (Exception ex)
+                    catch
                     {
-
                         lblMsg.Text = "Error! Please try again";
-
                     }
                 }
                 else
