@@ -199,16 +199,17 @@ namespace PR3.view
             if (File.Exists(filePath))
             {
                 System.Drawing.Image orgImg = System.Drawing.Image.FromFile(filePath);
-                Rectangle CropArea = new Rectangle
-                (
-                    Convert.ToInt32(X.Value),
-                    Convert.ToInt32(Y.Value),
-                    Convert.ToInt32(W.Value),
-                    Convert.ToInt32(H.Value)
-                );
 
                 try
                 {
+                    Rectangle CropArea = new Rectangle
+                    (
+                        Convert.ToInt32(X.Value),
+                        Convert.ToInt32(Y.Value),
+                        Convert.ToInt32(W.Value),
+                        Convert.ToInt32(H.Value)
+                    );
+               
                     Bitmap bitMap = new Bitmap(CropArea.Width, CropArea.Height);
                     using (Graphics g = Graphics.FromImage(bitMap))
                     {
@@ -243,9 +244,13 @@ namespace PR3.view
 
                     }
                 }
+                catch (FormatException)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "Erreur Crop", "alert('Veuillez d\\'abord choisir la zone à redimensionner')", true);
+                }
                 catch
                 {
-                    throw;
+                    throw ;
                 }
             }
         }
