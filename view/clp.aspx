@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head id="Head1" runat="server">
-    <title/>
+    <title></title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -26,6 +26,20 @@
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <style type="text/css">
+        .auto-style24 {
+            width: 420px;
+            height: 36px;
+        }
+        .auto-style25 {
+            height: 37px;
+            width: 420px;
+        }
+        .auto-style26 {
+            height: 36px;
+        }
+    </style>
 
 </head>
     <body>
@@ -127,21 +141,26 @@
 
                     <table>
                         <tr>
-                            <td class="auto-style23">
-                                <asp:Label ID="Label4" runat="server" class=" btn btn-primary">
-                                    <span>Parcourir...</span>
-                                    
-                                    <asp:FileUpload ID="FU1" runat="server" Class="file" data-icon="false" /> 
-                                </asp:Label>             
-                            </td>
-                            
-                            <td class="auto-style23">
-                                <asp:Button ID="btnUpLoad" class=" btn btn-primary" runat="server" Text="Charger..." OnClick="btnUpLoad_Click" />  
-                            </td>
-                        </tr>
+               <td class="auto-style24">
+                   <asp:TextBox ID="Text" class="form-control" runat="server" Width="394px"></asp:TextBox>
+               </td>
+                 <td class="auto-style26">
+                  &nbsp;&nbsp;&nbsp;
+               </td>
+
+             <td class="auto-style26">
+                <asp:Label ID="Label4" runat="server" class="btn btn-primary">
+                    <span>Parcourir...</span>
+                    <asp:FileUpload ID="FU1" runat="server" Class="file" data-icon="false" /> 
+               </asp:Label>                
+             </td>
+             <td class="auto-style26">
+                      <asp:Button ID="btnUpLoad" class=" btn btn-primary" runat="server" Text="Charger..." OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
+             </td>
+           </tr>
                         
                         <tr>
-                            <td class="auto-style13">
+                            <td class="auto-style25">
                                 <div class="form-group">
                                     <asp:Label ID="lblMsg" runat="server" ForeColor="Red" />
                                 </div>
@@ -157,11 +176,21 @@
 
             <asp:Panel ID="Panel1" runat="server" Height="482px" Width="499px">
                 <table class="auto-style4">
+
+                <tr>
+                <td class="radio1">
+                    &nbsp;&nbsp;&nbsp;
+                   <asp:RadioButton ID="Rad1" runat="server" OnCheckedChanged="Rad1_CheckedChanged"  Text="Text" AutoPostBack="true"  GroupName="measurementSystem" />
+                </td>
+                <td class="radio2">
+                   <asp:RadioButton ID="Rad2" runat="server" OnCheckedChanged="Rad2_CheckedChanged"  Text="Images,Logo,Symbole.."  AutoPostBack="true"  GroupName="measurementSystem"/>
+                </td>
+               </tr>
                     <tr>
                         <td class="auto-style19">
                             <div class="form-group">
                                 <asp:Label ID="Label10" runat="server" Text="Epaisseur" />
-								<asp:Label ID="Label1" runat="server" Text="(en mm)" />
+                                <asp:Label ID="Label1" runat="server" Text="(en mm)" />
                             </div>
                         </td>
                         
@@ -232,7 +261,7 @@
                         <td class="auto-style19">
                             <div class="form-group">
                                 <asp:Label ID="Label6" runat="server" Text="Puissance" />
-								<asp:Label ID="Label9" runat="server" Text="(en Watt)"/>
+                                <asp:Label ID="Label9" runat="server" Text="en Watt" />
                             </div>
                         </td>
                         
@@ -249,7 +278,7 @@
                         <td class="auto-style19">
                             <div class="form-group">
                                 <asp:Label ID="Label5" runat="server" Text="Longueur" />
-								<asp:Label ID="Label12" runat="server" Text="(en mm)"/>
+                                <asp:Label ID="Label12" runat="server" Text="(en mm)" />
                             </div>
                         </td>
                         
@@ -262,7 +291,7 @@
                         <td class="auto-style22">
                             <div class="form-group">
                                 <asp:Label ID="Label11" runat="server" Text="Hauteur" />
-								<asp:Label ID="Label13" runat="server" Text="(en mm)"/>
+                                <asp:Label ID="Label13" runat="server" Text="(en mm)" />
                             </div>
                         </td>
                         
@@ -275,7 +304,7 @@
                         <td class="auto-style19">
                             <div class="form-group">
                                 <asp:Label ID="Label7" runat="server" Text="Espacement" />
-								<asp:Label ID="Label14" runat="server" Text="(en mm)"/>
+                                <asp:Label ID="Label14" runat="server" Text="(en mm)" />
                             </div>
                         </td>
                         

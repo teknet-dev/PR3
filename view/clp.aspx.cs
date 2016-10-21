@@ -22,7 +22,7 @@ namespace PR3.view
         private const int maxHeight = 750;
 
         public DataTable tableAH = null;
-        private int [] TableCorrespondance = {   
+        private int[] TableCorrespondance = {   
                                                 0,
                                                15,
                                                35,
@@ -30,24 +30,24 @@ namespace PR3.view
                                               100,
                                               150,
                                               240
-        } ;
+        };
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if ((!SessionModel.Connecté) || (SessionModel.SessionID != Session.SessionID))
             {
-                SessionModel.Reset() ;
+                SessionModel.Reset();
                 Response.Redirect("index.aspx");
             }
 
-            String civ, pren, nom, soc ;
-            civ = SessionModel.Civilité ;
-            pren = SessionModel.PrénomUser ;
-            nom = SessionModel.NomUser ;
-            soc = SessionModel.Société ;
-            infoUtilisateur.Text = "BIENVENUE " + civ + 
-                ((pren =="" || pren.ToUpper() == "NULL")? "" :(" " + pren )) +
+            String civ, pren, nom, soc;
+            civ = SessionModel.Civilité;
+            pren = SessionModel.PrénomUser;
+            nom = SessionModel.NomUser;
+            soc = SessionModel.Société;
+            infoUtilisateur.Text = "BIENVENUE " + civ +
+                ((pren == "" || pren.ToUpper() == "NULL") ? "" : (" " + pren)) +
                 " " + nom +
                 ((soc == "" || soc.ToUpper() == "NULL") ? "" : (" / " + soc));
 
@@ -60,8 +60,108 @@ namespace PR3.view
             nbLettreTxt.Visible = false;
             ImagModel bdd = new ImagModel();
             bdd.AddContact(imagC);
+            ReadOnly();
         }
 
+        public void ReadOnly()
+        {
+
+            TextBox4.ReadOnly = true;
+            TextBox4.BackColor = Color.WhiteSmoke;
+            txtpuis.ReadOnly = true;
+            txtpuis.BackColor = Color.WhiteSmoke;
+
+            test.ReadOnly = true;
+            test.BackColor = Color.WhiteSmoke;
+            haute.ReadOnly = true;
+            haute.BackColor = Color.WhiteSmoke;
+            txtespace.ReadOnly = true;
+            txtespace.BackColor = Color.WhiteSmoke;
+
+            DropDownList2.Enabled = false;
+            Button1.Enabled = false;
+
+            nbLed.ReadOnly = true;
+            nbLed.BackColor = Color.WhiteSmoke;
+
+            nbP.ReadOnly = true;
+            nbP.BackColor = Color.WhiteSmoke;
+
+            nbV.ReadOnly = true;
+            nbV.BackColor = Color.WhiteSmoke;
+            Text.ReadOnly = true;
+            Text.BackColor = Color.WhiteSmoke;
+            //FU1.Enabled = false;
+            btnUpLoad.Enabled = false;
+        }
+        public void AllImg()
+        {
+            TextBox4.ReadOnly = false;
+            TextBox4.BackColor = Color.White;
+            txtpuis.ReadOnly = false;
+            txtpuis.BackColor = Color.White;
+
+            test.ReadOnly = false;
+            test.BackColor = Color.White;
+            haute.ReadOnly = false;
+            haute.BackColor = Color.White;
+            txtespace.ReadOnly = false;
+            txtespace.BackColor = Color.White;
+
+            DropDownList2.Enabled = true;
+            Button1.Enabled = true;
+
+            nbLed.ReadOnly = false;
+            nbLed.BackColor = Color.White;
+
+            nbP.ReadOnly = false;
+            nbP.BackColor = Color.White;
+
+            nbV.ReadOnly = false;
+            nbV.BackColor = Color.White;
+            Text.ReadOnly = true;
+            Text.BackColor = Color.WhiteSmoke;
+            Label4.Enabled = true;
+            btnUpLoad.Enabled = true;
+
+
+
+        }
+
+        public void AllText()
+        {
+            TextBox4.ReadOnly = false;
+            TextBox4.BackColor = Color.White;
+            txtpuis.ReadOnly = false;
+            txtpuis.BackColor = Color.White;
+
+            test.ReadOnly = false;
+            test.BackColor = Color.White;
+            haute.ReadOnly = false;
+            haute.BackColor = Color.White;
+            txtespace.ReadOnly = false;
+            txtespace.BackColor = Color.White;
+
+            DropDownList2.Enabled = true;
+            Button1.Enabled = true;
+
+            nbLed.ReadOnly = false;
+            nbLed.BackColor = Color.White;
+
+            nbP.ReadOnly = false;
+            nbP.BackColor = Color.White;
+
+            nbV.ReadOnly = false;
+            nbV.BackColor = Color.White;
+            Text.ReadOnly = false;
+            Text.BackColor = Color.White;
+            // FU1.Enabled = false;
+            Label4.BackColor = Color.White;
+            btnUpLoad.Enabled = false;
+
+
+
+        }
 
         //Fonction qui permet de detecter le nombre de caractères
         public int getNbOfCharacter(Image imageToSplit)
@@ -81,7 +181,7 @@ namespace PR3.view
             }
 
             mot = s;
-            return (nbC = nbLettre) ;
+            return (nbC = nbLettre);
         }
 
         private static Image cropImage(Image img, Rectangle cropArea)
@@ -129,7 +229,19 @@ namespace PR3.view
                     int nbCrtr = this.getNbOfCharacter(bitMap);
                     panCrop.Visible = false;
                     string prefixe = "caractère";
-                    if(nbCrtr > 1) prefixe += "s";
+                    if (nbCrtr > 1) prefixe += "s";
+
+                    if (Rad2.Checked)
+                    {
+                        AllImg();
+
+                    }
+                    if (Rad1.Checked)
+                    {
+
+                        AllText();
+
+                    }
                 }
                 catch
                 {
@@ -158,7 +270,7 @@ namespace PR3.view
                     if (imageWidth > maxWidth)
                     {
                         imageWidth = maxWidth;
-                        imageHeigth = (int)(imageWidth / rapport) ;
+                        imageHeigth = (int)(imageWidth / rapport);
                     }
 
                     if (imageHeigth > maxHeight)
@@ -200,11 +312,12 @@ namespace PR3.view
             return result;
         }
 
-        public void load() {
-                TxtSearch.Attributes.Add("onkeyUp", "return doSearch();");
-                TxtSearch.Attributes.Add("onfocus", String.Format("SetCursorToTextEnd({0})",TxtSearch.ID));
-                CreationTableAH();
-                TxtSearch_TextChanged(null,null);
+        public void load()
+        {
+            TxtSearch.Attributes.Add("onkeyUp", "return doSearch();");
+            TxtSearch.Attributes.Add("onfocus", String.Format("SetCursorToTextEnd({0})", TxtSearch.ID));
+            CreationTableAH();
+            TxtSearch_TextChanged(null, null);
         }
 
         private void CreationTableAH()
@@ -233,68 +346,69 @@ namespace PR3.view
             {
                 //if (tableAH.Rows.Count == 0)
                 //{
-                    MySqlConnection conn = null;
-                    string _strConn = ConfigurationManager.ConnectionStrings["LocalMySqlServer"].ConnectionString;
-                    conn = new MySqlConnection(_strConn);
-                    conn.Open();
-                    string query = "SELECT type, designation, puissance, voltage, espacement, tail, couleur, modules_chaine, longueur_cable, modules_ml, profondeur, prix_catalogue, nblumen FROM led " + conditions;
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.ExecuteNonQuery();
-                    MySqlDataReader reader = cmd.ExecuteReader();
-                    tableAH.Clear();
-                    while (reader.Read())
-                    {
-                        DataRow row = tableAH.NewRow();
-                        row[0] = reader["type"].ToString();
-                        row[1] = reader["designation"].ToString();
-                        row[2] = reader["puissance"].ToString();
-                        row[3] = reader["voltage"].ToString();
-                        row[4] = reader["espacement"].ToString();
+                MySqlConnection conn = null;
+                string _strConn = ConfigurationManager.ConnectionStrings["LocalMySqlServer"].ConnectionString;
+                conn = new MySqlConnection(_strConn);
+                conn.Open();
+                string query = "SELECT type, designation, puissance, voltage, espacement, tail, couleur, modules_chaine, longueur_cable, modules_ml, profondeur, prix_catalogue, nblumen FROM led " + conditions;
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                tableAH.Clear();
+                while (reader.Read())
+                {
+                    DataRow row = tableAH.NewRow();
+                    row[0] = reader["type"].ToString();
+                    row[1] = reader["designation"].ToString();
+                    row[2] = reader["puissance"].ToString();
+                    row[3] = reader["voltage"].ToString();
+                    row[4] = reader["espacement"].ToString();
 
 
-                        row[5] = reader["tail"].ToString();
-                        row[6] = reader["couleur"].ToString();
-                        row[7] = reader["modules_chaine"].ToString();
-                        row[8] = reader["longueur_cable"].ToString();
-                        row[9] = reader["modules_ml"].ToString();
-                        row[10] = reader["profondeur"].ToString();
-                        row[11] = reader["prix_catalogue"].ToString();
-                        row[12] = reader["nblumen"].ToString();
-                        tableAH.Rows.Add(row);
-                    }
+                    row[5] = reader["tail"].ToString();
+                    row[6] = reader["couleur"].ToString();
+                    row[7] = reader["modules_chaine"].ToString();
+                    row[8] = reader["longueur_cable"].ToString();
+                    row[9] = reader["modules_ml"].ToString();
+                    row[10] = reader["profondeur"].ToString();
+                    row[11] = reader["prix_catalogue"].ToString();
+                    row[12] = reader["nblumen"].ToString();
+                    tableAH.Rows.Add(row);
+                }
                 //}
                 //tableBind = filter(conditions) ;
                 tableBind = tableAH;
 
-                LEDList.DataSource = tableBind ;
+                LEDList.DataSource = tableBind;
                 LEDList.DataBind();
-//              LEDList.SelectedIndex = -1; // Problème quand on va calculer....
+                //              LEDList.SelectedIndex = -1; // Problème quand on va calculer....
                 List_SelectedIndexChanged(null, null);
             }
             catch { };
         }
 
-        public void insertImag() {
+        public void insertImag()
+        {
             try
             {
                 string _strConn = ConfigurationManager.ConnectionStrings["LocalMySqlServer"].ConnectionString;
 
                 using (MySqlConnection cn = new MySqlConnection(_strConn))
                 {
-                // Ouverture de la connexion SQL
-                   string im=txtespace.Text;
-                   string lo = test.Text;
-                   string larg = test.Text;
-                   cn.Open();
+                    // Ouverture de la connexion SQL
+                    string im = txtespace.Text;
+                    string lo = test.Text;
+                    string larg = test.Text;
+                    cn.Open();
 
-                // Requête SQL
-                string query = "INSERT INTO image (idimg, longueur, hauteur) VALUES ('"+im+"','"+lo+"','"+larg+"')";
+                    // Requête SQL
+                    string query = "INSERT INTO image (idimg, longueur, hauteur) VALUES ('" + im + "','" + lo + "','" + larg + "')";
 
-                MySqlCommand cmd = new MySqlCommand(query, cn);
-                cmd.ExecuteNonQuery();
-               }
+                    MySqlCommand cmd = new MySqlCommand(query, cn);
+                    cmd.ExecuteNonQuery();
+                }
             }
-            catch {}
+            catch { }
         }
 
         public void insertResult()
@@ -326,7 +440,7 @@ namespace PR3.view
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch{}
+            catch { }
         }
 
         public void insertResult2()
@@ -348,14 +462,14 @@ namespace PR3.view
 
                 using (MySqlConnection cn = new MySqlConnection(_strConn))
                 {
-                      //nombre led    
-                    decimal resu = (numh * numl)/nume;
+                    //nombre led    
+                    decimal resu = (numh * numl) / nume;
                     string nnbled = resu.ToString();
-                
+
                     //convert       
                     string lt = TxtLed.Text;
                     //puissance
-                    decimal r=resu*carb;
+                    decimal r = resu * carb;
                     string resultp = r.ToString();
 
                     cn.Open();
@@ -367,27 +481,27 @@ namespace PR3.view
 
                 }
             }
-            catch {}
+            catch { }
         }
-        
-		private int chercheCorrespondance(double d)
+
+        private int chercheCorrespondance(double d)
         {
             int i = 0;
-            while ((i < TableCorrespondance.Length) && (d > TableCorrespondance[i])) i++ ;
+            while ((i < TableCorrespondance.Length) && (d > TableCorrespondance[i])) i++;
             if (i >= TableCorrespondance.Length) return Convert.ToInt32(d);
             else return TableCorrespondance[i];
         }
-		
+
         protected void Button1_Click(object sender, EventArgs e)
         {
-		   // dao();
+            // dao();
             System.Globalization.NumberFormatInfo provider = new System.Globalization.NumberFormatInfo();
             provider.NumberDecimalSeparator = ",";
             provider.NumberGroupSeparator = ".";
             decimal carb = Convert.ToDecimal(txtpuis.Text, provider);
             decimal ht = Convert.ToDecimal(haute.Text, provider);
             decimal ll = Convert.ToDecimal(test.Text, provider);
-          //  decimal res = Convert.ToDecimal(txtpuis.Text, provider);
+            //  decimal res = Convert.ToDecimal(txtpuis.Text, provider);
             if (txtespace.Text.Equals(""))
             {
                 decimal result = (ht * ll);
@@ -395,7 +509,7 @@ namespace PR3.view
                 string afresult = result.ToString();
                 nbLed.Text = afresult;
                 decimal res = Convert.ToDecimal(result, provider);
-                decimal pw1 = chercheCorrespondance((double)res * (double)carb) ;
+                decimal pw1 = chercheCorrespondance((double)res * (double)carb);
                 string resultpw = pw1.ToString();
                 nbP.Text = resultpw;
 
@@ -405,7 +519,7 @@ namespace PR3.view
             else
             {
                 int k;
-                int echelle = 1 ;
+                int echelle = 1;
                 switch (DropDownList2.SelectedIndex)
                 {
                     case 0: k = 3; break;
@@ -418,27 +532,27 @@ namespace PR3.view
                 decimal ht2 = Convert.ToDecimal(haute.Text, provider); // Height
 
                 //nb led.
-                decimal result = Convert.ToInt32((echelle * ht2 * k * nbC) * Convert.ToInt32(LEDList.SelectedRow.Cells[9].Text) / (1000)) ;
-          
+                decimal result = Convert.ToInt32((echelle * ht2 * k * nbC) * Convert.ToInt32(LEDList.SelectedRow.Cells[9].Text) / (1000));
+
                 string afresult = result.ToString(); // Entier
                 nbLed.Text = afresult;
 
                 //puissance
-                decimal pw1 = chercheCorrespondance((double)result * (double)carb2) ;
+                decimal pw1 = chercheCorrespondance((double)result * (double)carb2);
                 string resultpw = pw1.ToString();
                 nbP.Text = resultpw;
                 insertResult2();
                 insertImag();
 
-                drawImageTebk() ;
+                drawImageTebk();
 
             }
         }
 
-        protected void drawImageTebk() 
+        protected void drawImageTebk()
         {
-            string extension = Path.GetExtension(cropimg.Src) ;
-            string filePath = Path.Combine(Server.MapPath("~/crpmg"),"temp" + extension) ;
+            string extension = Path.GetExtension(cropimg.Src);
+            string filePath = Path.Combine(Server.MapPath("~/crpmg"), "temp" + extension);
             string nomFont;
             switch (DropDownList2.SelectedIndex)
             {
@@ -448,39 +562,39 @@ namespace PR3.view
                 default: nomFont = ""; break;
             }
 
-            Bitmap bitMap ;
-            
+            Bitmap bitMap;
+
             using (Image org = (Image)Bitmap.FromFile(Server.MapPath(cropimg.Src)))
                 bitMap = new Bitmap(org.Width, org.Height);
             using (Graphics graph = Graphics.FromImage(bitMap))
             {
-                String text = mot ;
-                Rectangle ImageSize = new Rectangle(0,0,bitMap.Width,bitMap.Height);
+                String text = mot;
+                Rectangle ImageSize = new Rectangle(0, 0, bitMap.Width, bitMap.Height);
                 graph.FillRectangle(Brushes.White, ImageSize);
                 StringFormat strFormat = new StringFormat();
 
                 strFormat.Alignment = StringAlignment.Center;
                 strFormat.LineAlignment = StringAlignment.Center;
 
-                String temp = Server.MapPath("/library/font/" + nomFont + ".ttf") ;
-                
+                String temp = Server.MapPath("/library/font/" + nomFont + ".ttf");
 
-                graph.DrawString(text,scalling(graph,temp,text,bitMap.Width,bitMap.Height), Brushes.Black,
+
+                graph.DrawString(text, scalling(graph, temp, text, bitMap.Width, bitMap.Height), Brushes.Black,
                 new Rectangle(0, 0, bitMap.Width, bitMap.Height), strFormat);
-            } 
+            }
 
-            bitMap.Save(filePath) ;
-            cropimg.Src = "~/crpmg/" + "temp" + extension ;
+            bitMap.Save(filePath);
+            cropimg.Src = "~/crpmg/" + "temp" + extension;
         }
-        private Font scalling(Graphics g, String family,string text, int width, int height)
+        private Font scalling(Graphics g, String family, string text, int width, int height)
         {
             PrivateFontCollection p = new PrivateFontCollection();
             p.AddFontFile(family);
-            Font fontFamily = new Font(p.Families[0],10);
+            Font fontFamily = new Font(p.Families[0], 10);
             SizeF RealSize = g.MeasureString(text, fontFamily);
             float ratio = (float)RealSize.Height / (float)RealSize.Width;
             float boxRatio = (float)height / (float)width;
-            float ScaleRatio ;
+            float ScaleRatio;
             if (ratio > boxRatio) // (height / Width = r)
             {
                 //resize  height
@@ -491,7 +605,7 @@ namespace PR3.view
                 //resize width
                 ScaleRatio = (float)width / (float)RealSize.Width;
             }
-            float ScaleFontSize = fontFamily.Size*ScaleRatio*0.9f ;
+            float ScaleFontSize = fontFamily.Size * ScaleRatio * 0.9f;
             return new Font(fontFamily.FontFamily, ScaleFontSize);
         }
 
@@ -514,9 +628,9 @@ namespace PR3.view
                 nbV.ReadOnly = true;
                 nbV.BackColor = Color.WhiteSmoke;
             }
-            else{}
+            else { }
         }
-        
+
         protected void TxtSearch_TextChanged(object sender, EventArgs e)
         {
             string req = TxtSearch.Text;
@@ -543,7 +657,7 @@ namespace PR3.view
                         " nblumen LIKE '%" + req + "%'";
             remplirTable(req);
 
-//          TxtSearch.Focus();
+            //          TxtSearch.Focus();
         }
 
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
@@ -561,6 +675,82 @@ namespace PR3.view
 
 
             Response.Redirect("index.aspx");
+        }
+
+        protected void Rad1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Rad1.Checked)
+            {
+
+
+                TextBox4.ReadOnly = true;
+                TextBox4.BackColor = Color.WhiteSmoke;
+                txtpuis.ReadOnly = true;
+                txtpuis.BackColor = Color.WhiteSmoke;
+
+                test.ReadOnly = true;
+                test.BackColor = Color.WhiteSmoke;
+                haute.ReadOnly = true;
+                haute.BackColor = Color.WhiteSmoke;
+                txtespace.ReadOnly = true;
+                txtespace.BackColor = Color.WhiteSmoke;
+
+                DropDownList2.Enabled = false;
+                Button1.Enabled = false;
+
+                nbLed.ReadOnly = true;
+                nbLed.BackColor = Color.WhiteSmoke;
+
+                nbP.ReadOnly = true;
+                nbP.BackColor = Color.WhiteSmoke;
+
+                nbV.ReadOnly = true;
+                nbV.BackColor = Color.WhiteSmoke;
+                Text.ReadOnly = false;
+                Text.BackColor = Color.White;
+                //FU1.Enabled = false;
+                btnUpLoad.Enabled = false;
+
+
+
+            }
+        }
+
+        protected void Rad2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Rad2.Checked)
+            {
+
+                TextBox4.ReadOnly = true;
+                TextBox4.BackColor = Color.WhiteSmoke;
+                txtpuis.ReadOnly = true;
+                txtpuis.BackColor = Color.WhiteSmoke;
+
+                test.ReadOnly = true;
+                test.BackColor = Color.WhiteSmoke;
+                haute.ReadOnly = true;
+                haute.BackColor = Color.WhiteSmoke;
+                txtespace.ReadOnly = true;
+                txtespace.BackColor = Color.WhiteSmoke;
+
+                DropDownList2.Enabled = false;
+                Button1.Enabled = false;
+
+                nbLed.ReadOnly = true;
+                nbLed.BackColor = Color.WhiteSmoke;
+
+                nbP.ReadOnly = true;
+                nbP.BackColor = Color.WhiteSmoke;
+
+                nbV.ReadOnly = true;
+                nbV.BackColor = Color.WhiteSmoke;
+                Text.ReadOnly = true;
+                Text.BackColor = Color.WhiteSmoke;
+                //FU1.Enabled = fals
+                btnUpLoad.Enabled = true;
+                Text.Text = "";
+
+            }
         }
     }
 }
