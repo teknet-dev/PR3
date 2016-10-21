@@ -93,6 +93,7 @@ namespace PR3.view
             Text.BackColor = Color.WhiteSmoke;
             //FU1.Enabled = false;
             btnUpLoad.Enabled = false;
+            btnUpLoad.ForeColor = Color.Gray;
         }
         public void AllImg()
         {
@@ -156,7 +157,7 @@ namespace PR3.view
             Text.ReadOnly = false;
             Text.BackColor = Color.White;
             // FU1.Enabled = false;
-            Label4.BackColor = Color.White;
+            Label4.BackColor = Color.Gray;
             btnUpLoad.Enabled = false;
 
 

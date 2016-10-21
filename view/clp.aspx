@@ -351,7 +351,7 @@
                 <img src="#" id="cropimg" runat="server" visible="false" style="margin-top: -40%;margin-left: 80%;" />
             </asp:Panel> 
             
-            <div id="rectangle">        
+            <div id="rectangle" class="form-control">        
                 <a id="minusBtn" onclick="minus()" style="cursor: pointer;">
                     <img src="../Images/zoommoins.png" style="height: 5%;margin-left: 5%;" />
                 </a>
