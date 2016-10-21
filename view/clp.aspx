@@ -42,7 +42,7 @@
     </style>
 
 </head>
-    <body>
+    <body classe="body2">
         <form id="form1" runat="server">
             <asp:ScriptManager ID="ScriptManager1" runat="server"/>
             <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -79,7 +79,7 @@
             
             <br /> 
 
-            <asp:Panel ID="Panel3" runat="server" style="margin-left: 25%" Width="657px">
+            <asp:Panel ID="Panel3" runat="server" style="margin-left: 25%; margin-top: -2%" Width="657px">
                 <table class="auto-style1">
                     <tr>
                         <td class="auto-style3">
@@ -174,7 +174,7 @@
                 </div>
             </asp:Panel> 
 
-            <asp:Panel ID="Panel1" runat="server" Height="482px" Width="499px">
+            <asp:Panel ID="Panel1" runat="server" Height="482px" Width="499px" style="margin-top:-2.5%">
                 <table class="auto-style4">
 
                 <tr>
@@ -236,7 +236,7 @@
                         
                         <td class="auto-style19" style="padding-left:13px" >
                             <%--Ad-hoc --%>
-                            <div style="overflow:scroll ;height:150px ; width: 400px ;margin-left:-24%; border: 2px solid ; border-color:lightgrey ; border-radius:3px">
+                            <div style="overflow:scroll ;height:150px ; width: 380px ;margin-left:-26%; border: 2px solid ; border-color:lightgrey ; border-radius:3px">
                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                     <ContentTemplate>
 							            <asp:GridView BorderStyle="None" AlternatingRowStyle-BackColor="#F0F0F0" ID="LEDList" runat="server" OnRowDataBound="List_DataBound" OnSelectedIndexChanged="List_SelectedIndexChanged" Width="100%" ShowHeaderWhenEmpty="True">
@@ -311,7 +311,7 @@
                         <td class="auto-style19">
 				            <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                                 <ContentTemplate>
-						            <asp:TextBox class="form-control"  ID="txtespace" runat="server" Width="280px" Height="40px" />
+						            <asp:TextBox class="form-control" value="" ID="txtespace" runat="server" Width="280px" Height="40px" />
         					    </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>   

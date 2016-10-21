@@ -44,7 +44,7 @@
       
     </head>
     
-    <body>
+    <body classe="body1">
         <center>
             <form id="form" runat="server" class="ecran" >
                 <asp:Panel ID="Panel2" class="pan2" runat="server" Height="142px" Width="224px">
