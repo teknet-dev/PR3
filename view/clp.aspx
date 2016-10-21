@@ -155,7 +155,7 @@
                </asp:Label>                
              </td>
              <td class="auto-style26">
-                      <asp:Button ID="btnUpLoad" class=" btn btn-primary" runat="server" Text="Charger..." OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
+                      <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
              </td>
            </tr>
                         
