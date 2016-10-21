@@ -1,19 +1,13 @@
-﻿using MySql.Data;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using tessnet2;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
 using Image = System.Drawing.Image;
@@ -40,6 +34,23 @@ namespace PR3.view
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if ((!SessionModel.Connecté) || (SessionModel.SessionID != Session.SessionID))
+            {
+                SessionModel.Reset() ;
+                Response.Redirect("index.aspx");
+            }
+
+            String civ, pren, nom, soc ;
+            civ = SessionModel.Civilité ;
+            pren = SessionModel.PrénomUser ;
+            nom = SessionModel.NomUser ;
+            soc = SessionModel.Société ;
+            infoUtilisateur.Text = "BIENVENUE " + civ + 
+                ((pren =="" || pren.ToUpper() == "NULL")? "" :(" " + pren )) +
+                " " + nom +
+                ((soc == "" || soc.ToUpper() == "NULL") ? "" : (" / " + soc));
+
             imagController imagC = new imagController();
             imagC.idimg = "jo";
             imagC.longueur = 3;
@@ -51,7 +62,8 @@ namespace PR3.view
             bdd.AddContact(imagC);
         }
 
-        //Fonction qui permet de detecter les nombre de caractère
+
+        //Fonction qui permet de detecter le nombre de caractères
         public int getNbOfCharacter(Image imageToSplit)
         {
             string s = "";
@@ -155,16 +167,7 @@ namespace PR3.view
                         imageWidth = (int)(imageHeigth * rapport);
                     }
                     imageToUplolad = ResizeBitmap((Bitmap)imageToUplolad, imageWidth, imageHeigth); ///new width, height
-                    string ssssssssssss ="" ;
-                    try
-                    {
-                         ssssssssssss = Path.Combine(Server.MapPath("~/img/"), uploadFileName);
-                        imageToUplolad.Save(Path.Combine(Server.MapPath("~/img/"), uploadFileName));
-                    }
-                    catch (Exception newE) {
-                        lblMsg.Text = newE.Message + "   " +ssssssssssss;
-                    }                              
-                    
+                    imageToUplolad.Save(Path.Combine(Server.MapPath("~/img/"), uploadFileName));
                     try
                     {
                         imgUpload.ImageUrl = "~/img/" + uploadFileName;
@@ -545,6 +548,18 @@ namespace PR3.view
 
         protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
         {
+            SessionModel.Reset();
+            try
+            {
+                Page.Session.Abandon();
+            }
+            catch { }
+
+
+            // N'oubliez pas de reconfigurer "isActive = false" ici...
+
+
+
             Response.Redirect("index.aspx");
         }
     }

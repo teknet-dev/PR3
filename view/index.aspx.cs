@@ -1,24 +1,36 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Web;
+using System.Web.Mail;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using Image = System.Drawing.Image;
 
 namespace PR3.view
 {
     public partial class index : System.Web.UI.Page
     {
+        private const string mailEnvoyeur = "you@moov.mg";
+        private const string sujetMail = "Récupération du mot de passe. A ne pas répondre" ;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SessionModel.SessionID == "")
+            {
+                try
+                {
+                    Page.Session.Add("info",true);
+                }
+                catch { }
+            }
 
+            if ((SessionModel.SessionID == Session.SessionID) && (SessionModel.Connecté))
+            {
+                Response.Redirect("clp.aspx");
+            }
+            else if (SessionModel.SessionID != Session.SessionID)
+            {
+                SessionModel.Connecté = false;
+                SessionModel.SessionID = Session.SessionID;
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -28,23 +40,15 @@ namespace PR3.view
         }
         private bool IsValide()
         {
-            bool retval = true;
-
-
-            if (passe.Text.Length < 1) retval = false;
-            if (login.Text.Length < 1) retval = false;
+            bool retval = (passe.Text.Length >= 1) && (login.Text.Length >= 1) ;
 
             return retval;
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
-
             if (!IsValide())
             {
-
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Champ Obligatoire!');</script>");
-
-
             }
             else
             {
@@ -55,28 +59,81 @@ namespace PR3.view
                 conn = new MySqlConnection(_strConn);
                 conn.Open();
 
-                string query = "SELECT  * FROM user  where login='" + log + "'and pass='" + pass + "' ";
+                string query = "SELECT  * FROM user  where loginUser='" + log + "'and mdpUser='" + pass + "' ";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.ExecuteNonQuery();
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-             
-                    if (reader.Read())
+                if (reader.Read())
+                {
+                    if (!SessionModel.Set(conn,reader))
                     {
-
-                        Response.Redirect("clp.aspx");
-
-
+                        // Cet utilisateur est déjà connecté en ce moment
+                        // Codez ici pour gérer cela
                     }
-                    else
-                    {
-
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('incorrect!');</script>");
 
 
-                    }
-                
+                    Response.Redirect("clp.aspx");
+                }
+                else
+                {
+                    SessionModel.Connecté = false;
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('incorrect!');</script>");
+                }
             }
+        }
+
+        protected void LinkForgotten_Click(object sender, EventArgs e)
+        {
+            passe.Text = "";
+            EditerIndex(true);
+        }
+
+        private void EditerIndex(bool oubli=false)
+        {
+            lMOub.Visible = oubli;
+            Mdp.Visible = !oubli;
+            lMail.Visible = oubli;
+            passe.Visible = !oubli;
+            mail.Visible = oubli;
+            Button1.Visible = !oubli;
+            Button2.Visible = !oubli;
+            Button3.Visible = oubli;
+            Button4.Visible = oubli;
+            LinkForgotten.Visible = !oubli;
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            string loginClient = login.Text;
+            string adresseClient = mail.Text;
+
+            if ((loginClient == "") || (adresseClient == ""))
+            {
+                ClientScript.RegisterStartupScript(GetType(),"Erreur","alert('Les champs \"login\" et \"Adresse e-mail\"sont obligatoires')",true);
+                return;
+            }
+
+            MailMessage email = new MailMessage();
+            email.From = mailEnvoyeur;
+            email.To = adresseClient ;
+            email.Subject = sujetMail;
+            email.Body = "Ceci est un test provenant du site web \"calepinage\", est-ce-que tu l'a reçu?\nOK\nA bientôt..." ;
+            email.Priority = MailPriority.High;
+            SmtpMail.SmtpServer = "smtp.moov.mg" ;
+            try
+            {
+                SmtpMail.Send(email);
+            }
+            catch (Exception ex)
+            {
+                lMOub.Text = ex.Message;
+            }
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            EditerIndex();
         }
     }
 }
