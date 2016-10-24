@@ -41,6 +41,44 @@
         }
     </style>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        var $chkAll = $("#Rad1");
+        var btnNext = $("#<%  %>");
+        var state = 'disabled';
+
+        // update all checkboxes and submit button when check all is toggled
+        $chkAll.click(function () {
+            if ($chkAll.is(':checked')) {
+              
+                $("#FU1").attr("disabled", "disabled");
+
+            }
+        
+           // setButtonState();
+        });
+
+        // when any checkbox is clicked, update submit button state
+        $boxes.click(function () {
+            setButtonState();
+        });
+
+        // if any checkbox is checked, button is enabled, else disabled.
+        function setButtonState() {
+            var state = 'disabled';
+            $boxes.each(function () {
+                if ($(this).is(':checked')) {
+                    state = '';
+                    return false;
+                }
+            });
+            $('[id$="BtnAddCart"]').attr('disabled', state);
+        }
+
+    });
+</script>
+
+
 </head>
     <body>
         <form id="form1" runat="server">
@@ -56,8 +94,13 @@
                         
                         <a class="navbar-brand" href="#"> SMART CALEPINAGE 
                             <asp:Panel ID="Panel5" runat="server" Height="30px" style="margin-left: 989px">
+                          <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+                                <ContentTemplate>
                                 <asp:ImageButton ID="ImageButton2"  ImageUrl="~/Images/deconnexion.png" style="height:48px; margin-left: 100%; margin-top: -26px" type="image" runat="server" OnClick="ImageButton2_Click" />
-                            </asp:Panel>              
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                             </asp:Panel>    
+                                              
                         </a>
                         
                         <a class="navbar-brand" href="#"> 
@@ -142,17 +185,22 @@
                     <table>
                         <tr>
                <td class="auto-style24">
-                   <asp:TextBox ID="Text" class="form-control" runat="server" Width="394px"></asp:TextBox>
+                   <asp:TextBox ID="Text" class="form-control" runat="server" Width="394px" CausesValidation="True" OnTextChanged="Text_TextChanged"></asp:TextBox>
+               </td>
+
+               <td class="auto-style24">
+                   <asp:Button ID="Button2" runat="server" class=" btn btn-primary" Text="Inserer.." OnClick="Button2_Click" />
                </td>
                  <td class="auto-style26">
                   &nbsp;&nbsp;&nbsp;
                </td>
 
              <td class="auto-style26">
-                <asp:Label ID="Label4" runat="server" class="btn btn-primary">
-                    <span>Parcourir...</span>
+                <asp:Label ID="Label4" runat="server" class="btn btn-primary ">
+                    <span id="gg">Parcourir...</span>
                     <asp:FileUpload ID="FU1" runat="server" Class="file" data-icon="false" /> 
-               </asp:Label>                
+                   
+               </asp:Label> 
              </td>
              <td class="auto-style26">
                       <asp:Button ID="btnUpLoad" class=" btn btn-primary" runat="server" Text="Charger..." OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  

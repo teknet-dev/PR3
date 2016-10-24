@@ -19,7 +19,8 @@ namespace PR3.view
         private static int nbC;
         private static string mot;
         private const int maxWidth = 750;
-        private const int maxHeight = 750;
+        private const int maxHeight = 750;        
+        private static string let;
 
         public DataTable tableAH = null;
         private int[] TableCorrespondance = {   
@@ -66,8 +67,7 @@ namespace PR3.view
         public void ReadOnly()
         {
 
-            TextBox4.ReadOnly = true;
-            TextBox4.BackColor = Color.WhiteSmoke;
+            Button2.Visible = false;
             txtpuis.ReadOnly = true;
             txtpuis.BackColor = Color.WhiteSmoke;
 
@@ -78,8 +78,8 @@ namespace PR3.view
             txtespace.ReadOnly = true;
             txtespace.BackColor = Color.WhiteSmoke;
 
-            DropDownList2.Enabled = false;
-            Button1.Enabled = false;
+          //  DropDownList2.Enabled = false;
+          //  Button1.Enabled = false;
 
             nbLed.ReadOnly = true;
             nbLed.BackColor = Color.WhiteSmoke;
@@ -91,8 +91,14 @@ namespace PR3.view
             nbV.BackColor = Color.WhiteSmoke;
             Text.ReadOnly = true;
             Text.BackColor = Color.WhiteSmoke;
-            //FU1.Enabled = false;
+            FU1.Visible= false;
+            FU1.BackColor = Color.WhiteSmoke;
+            Label14.BackColor = Color.WhiteSmoke;
+            Label4.Visible = true;
             btnUpLoad.Enabled = false;
+            btnUpLoad.Visible = false;
+           // btnUpLoad.Visible = false;
+           
         }
         public void AllImg()
         {
@@ -122,6 +128,8 @@ namespace PR3.view
             Text.ReadOnly = true;
             Text.BackColor = Color.WhiteSmoke;
             Label4.Enabled = true;
+            FU1.Visible = true;
+            FU1.Enabled = true;
             btnUpLoad.Enabled = true;
 
 
@@ -155,8 +163,9 @@ namespace PR3.view
             nbV.BackColor = Color.White;
             Text.ReadOnly = false;
             Text.BackColor = Color.White;
-            // FU1.Enabled = false;
-            Label4.BackColor = Color.White;
+            FU1.Visible = false;
+          
+            Label4.Enabled = false;
             btnUpLoad.Enabled = false;
 
 
@@ -164,7 +173,30 @@ namespace PR3.view
         }
 
         //Fonction qui permet de detecter le nombre de caractères
-        public int getNbOfCharacter(Image imageToSplit)
+        public int getText(Image imageToSplit)
+        {
+            string s = "";
+            var image = new Bitmap(imageToSplit);
+            var ocr = new Tesseract();
+            
+            ocr.SetVariable("load_system_dawg", false);
+            ocr.SetVariable("load_freq_dawg", false);
+            ocr.Init(Server.MapPath(@"\tessdata\"), "eng", false);
+            var result = ocr.DoOCR(image, Rectangle.Empty);
+            int nbLettre = 0;
+            foreach (tessnet2.Word word in result)
+            {
+                s += Text.Text;
+             
+                Text.Text= let;
+
+            }
+
+            mot = s;
+            return (nbC = nbLettre);
+        }
+
+             public int getNbOfCharacter(Image imageToSplit)
         {
             string s = "";
             var image = new Bitmap(imageToSplit);
@@ -183,6 +215,7 @@ namespace PR3.view
             mot = s;
             return (nbC = nbLettre);
         }
+
 
         private static Image cropImage(Image img, Rectangle cropArea)
         {
@@ -230,16 +263,24 @@ namespace PR3.view
                     panCrop.Visible = false;
                     string prefixe = "caractère";
                     if (nbCrtr > 1) prefixe += "s";
-
+                    Button1.Enabled = true;
+                    lblMsg.Visible = false;
                     if (Rad2.Checked)
                     {
                         AllImg();
-
+                        FU1.Visible = true;
+                        btnUpLoad.Enabled = true;
+                        Label4.Visible = true;
+                        btnUpLoad.Visible = true;
                     }
                     if (Rad1.Checked)
                     {
 
                         AllText();
+                        FU1.Visible = false;
+                        btnUpLoad.Enabled = true;
+                        Label4.Visible = false;
+                        btnUpLoad.Visible = true;
 
                     }
                 }
@@ -252,55 +293,100 @@ namespace PR3.view
 
         protected void btnUpLoad_Click(object sender, EventArgs e)
         {
-            string uploadFileName = "";
-
-            if (FU1.HasFile)
+            if (btnUpLoad.Text == "Charger...")
             {
-                string ext = Path.GetExtension(FU1.FileName).ToLower();
-                if (ext == ".jpg" || ext == ".jpeg" || ext == ".gif" || ext == ".png")
+                string uploadFileName = "";
+
+                if (FU1.HasFile)
                 {
-                    HttpPostedFile pf = FU1.PostedFile;
-                    uploadFileName = Guid.NewGuid().ToString() + ext;
-                    System.Drawing.Image imageToUplolad = System.Drawing.Image.FromStream(pf.InputStream);
-                    int imageWidth = imageToUplolad.Width;
-                    int imageHeigth = imageToUplolad.Height;
+                    string ext = Path.GetExtension(FU1.FileName).ToLower();
+                    if (ext == ".jpg" || ext == ".jpeg" || ext == ".gif" || ext == ".png")
+                    {
+                        HttpPostedFile pf = FU1.PostedFile;
+                        uploadFileName = Guid.NewGuid().ToString() + ext;
+                        System.Drawing.Image imageToUplolad = System.Drawing.Image.FromStream(pf.InputStream);
+                        int imageWidth = imageToUplolad.Width;
+                        int imageHeigth = imageToUplolad.Height;
 
-                    double rapport = (double)imageWidth / (double)imageHeigth;
+                        double rapport = (double)imageWidth / (double)imageHeigth;
 
-                    if (imageWidth > maxWidth)
+                        if (imageWidth > maxWidth)
+                        {
+                            imageWidth = maxWidth;
+                            imageHeigth = (int)(imageWidth / rapport);
+                        }
+
+                        if (imageHeigth > maxHeight)
+                        {
+                            imageHeigth = maxHeight;
+                            imageWidth = (int)(imageHeigth * rapport);
+                        }
+                        imageToUplolad = ResizeBitmap((Bitmap)imageToUplolad, imageWidth, imageHeigth); ///new width, height
+                        imageToUplolad.Save(Path.Combine(Server.MapPath("~/img/"), uploadFileName));
+                        try
+                        {
+                            imgUpload.ImageUrl = "~/img/" + uploadFileName;
+                            panCrop.Visible = true;
+                            btnCrop.Visible = true;
+                            cropimg.Visible = false;
+                            FU1.Visible = true;
+
+                            btnUpLoad.Enabled = true;
+                            Text.ReadOnly = true;
+                            Text.BackColor = Color.White;
+                            lblMsg.Visible = false;
+                            btnUpLoad.Enabled = true;
+                            Label4.Visible = true;
+                            btnUpLoad.Visible = true;
+
+                        }
+                        catch
+                        {
+                            lblMsg.Text = "Erreur! Veuillez réessayer!";
+                            FU1.Visible = true;
+                            btnUpLoad.Enabled = true;
+                            Text.ReadOnly = true;
+                            Text.BackColor = Color.White;
+                            btnUpLoad.Enabled = true;
+                            Label4.Visible = true;
+                            btnUpLoad.Visible = true;
+                        }
+                    }
+                    else
                     {
-                        imageWidth = maxWidth;
-                        imageHeigth = (int)(imageWidth / rapport);
+                        lblMsg.Text = "Sélectionnez le type de fichier non autorisé!";
+                        FU1.Visible = true;
+                        btnUpLoad.Enabled = true;
+                        Text.ReadOnly = true;
+                        Text.BackColor = Color.White;
+                        btnUpLoad.Enabled = true;
+                        Label4.Visible = true;
+                        btnUpLoad.Visible = true;
                     }
 
-                    if (imageHeigth > maxHeight)
-                    {
-                        imageHeigth = maxHeight;
-                        imageWidth = (int)(imageHeigth * rapport);
-                    }
-                    imageToUplolad = ResizeBitmap((Bitmap)imageToUplolad, imageWidth, imageHeigth); ///new width, height
-                    imageToUplolad.Save(Path.Combine(Server.MapPath("~/img/"), uploadFileName));
-                    try
-                    {
-                        imgUpload.ImageUrl = "~/img/" + uploadFileName;
-                        panCrop.Visible = true;
-                        btnCrop.Visible = true;
-                        cropimg.Visible = false;
-                    }
-                    catch
-                    {
-                        lblMsg.Text = "Error! Please try again";
-                    }
                 }
                 else
                 {
-                    lblMsg.Text = "Select file type not allowed!";
+                    lblMsg.Text = "S'il vous plaît sélectionner le fichier premier!";
+                    FU1.Visible = true;
+                    btnUpLoad.Enabled = true;
+                    Text.ReadOnly = true;
+                    Text.BackColor = Color.White;
+                    btnUpLoad.Enabled = true;
+                    Label4.Visible = true;
+                    btnUpLoad.Visible = true;
                 }
 
             }
-            else
-            {
-                lblMsg.Text = "Please select file first!";
+            else {
+                Text.ReadOnly = false;
+                Text.BackColor = Color.White;
+                FU1.Visible = false;
+                btnUpLoad.Enabled = true;
+               // lblMsg.Text = "Veuillez saisie un Text!!";
+                btnUpLoad.Enabled = true;
+                Label4.Visible = true;
+                btnUpLoad.Visible = true;
             }
         }
 
@@ -491,60 +577,117 @@ namespace PR3.view
             if (i >= TableCorrespondance.Length) return Convert.ToInt32(d);
             else return TableCorrespondance[i];
         }
-
+        private bool IsvAL() { 
+        
+          bool retval =true;
+          if (txtpuis.Text.Length < 1) retval = false;
+          return retval;
+        }
         protected void Button1_Click(object sender, EventArgs e)
         {
-            // dao();
-            System.Globalization.NumberFormatInfo provider = new System.Globalization.NumberFormatInfo();
-            provider.NumberDecimalSeparator = ",";
-            provider.NumberGroupSeparator = ".";
-            decimal carb = Convert.ToDecimal(txtpuis.Text, provider);
-            decimal ht = Convert.ToDecimal(haute.Text, provider);
-            decimal ll = Convert.ToDecimal(test.Text, provider);
-            //  decimal res = Convert.ToDecimal(txtpuis.Text, provider);
-            if (txtespace.Text.Equals(""))
-            {
-                decimal result = (ht * ll);
-                //puissance         
-                string afresult = result.ToString();
-                nbLed.Text = afresult;
-                decimal res = Convert.ToDecimal(result, provider);
-                decimal pw1 = chercheCorrespondance((double)res * (double)carb);
-                string resultpw = pw1.ToString();
-                nbP.Text = resultpw;
-
-                insertImag();
-                insertResult();
-            }
-            else
-            {
-                int k;
-                int echelle = 1;
-                switch (DropDownList2.SelectedIndex)
+           
+                if (Rad1.Checked || Rad2.Checked)
                 {
-                    case 0: k = 3; break;
-                    case 1: k = 5; break;
-                    case 2: k = 7; break;
-                    default: k = 9; break;
+                    string confilename, confilepath;
+                    string fileName = Path.GetFileName(imgUpload.ImageUrl);
+                    string filePath = Path.Combine(Server.MapPath("~/img"), fileName);
+
+                    if (File.Exists(filePath))
+                    {
+
+                    if (IsvAL())
+                    {
+                      
+                        // dao();
+                        System.Globalization.NumberFormatInfo provider = new System.Globalization.NumberFormatInfo();
+                        provider.NumberDecimalSeparator = ",";
+                        provider.NumberGroupSeparator = ".";
+                        decimal carb = Convert.ToDecimal(txtpuis.Text, provider);
+                        decimal ht = Convert.ToDecimal(haute.Text, provider);
+                        decimal ll = Convert.ToDecimal(test.Text, provider);
+                        //  decimal res = Convert.ToDecimal(txtpuis.Text, provider);
+                        if (txtespace.Text.Equals(""))
+                        {
+                            decimal result = (ht * ll);
+                            //puissance         
+                            string afresult = result.ToString();
+                            nbLed.Text = afresult;
+                            decimal res = Convert.ToDecimal(result, provider);
+                            decimal pw1 = chercheCorrespondance((double)res * (double)carb);
+                            string resultpw = pw1.ToString();
+                            nbP.Text = resultpw;
+
+                            insertImag();
+                            insertResult();
+                        }
+                        else
+                        {
+                            int k;
+                            int echelle = 1;
+                            switch (DropDownList2.SelectedIndex)
+                            {
+                                case 0: k = 3; break;
+                                case 1: k = 5; break;
+                                case 2: k = 7; break;
+                                default: k = 9; break;
+                            }
+                            decimal carb2 = Convert.ToDecimal(txtpuis.Text, provider);
+
+                            decimal ht2 = Convert.ToDecimal(haute.Text, provider); // Height
+
+                            //nb led.
+                            decimal result = Convert.ToInt32((echelle * ht2 * k * nbC) * Convert.ToInt32(LEDList.SelectedRow.Cells[9].Text) / (1000));
+
+                            string afresult = result.ToString(); // Entier
+                            nbLed.Text = afresult;
+
+                            //puissance
+                            decimal pw1 = chercheCorrespondance((double)result * (double)carb2);
+                            string resultpw = pw1.ToString();
+                            nbP.Text = resultpw;
+                            insertResult2();
+                            insertImag();
+
+                            drawImageTebk();
+                            if (Rad2.Checked)
+                            {
+                                AllImg();
+                                FU1.Visible = true;
+                                btnUpLoad.Enabled = true;
+                                Label4.Visible = true;
+                                btnUpLoad.Visible = true;
+                            }
+                            if (Rad1.Checked)
+                            {
+
+                                AllText();
+                                FU1.Visible = false;
+                                btnUpLoad.Enabled = true;
+                                Label4.Visible = false;
+                                btnUpLoad.Visible = true;
+
+                            }
+
+                        }
+                    }
+                    else
+                    {
+
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez Verifier le Puissance!');</script>");
+
+                    }
                 }
-                decimal carb2 = Convert.ToDecimal(txtpuis.Text, provider);
+                else
+                {
 
-                decimal ht2 = Convert.ToDecimal(haute.Text, provider); // Height
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez Inserer un Text ou un Image!');</script>");
 
-                //nb led.
-                decimal result = Convert.ToInt32((echelle * ht2 * k * nbC) * Convert.ToInt32(LEDList.SelectedRow.Cells[9].Text) / (1000));
 
-                string afresult = result.ToString(); // Entier
-                nbLed.Text = afresult;
+                }
+            }
+            else {
 
-                //puissance
-                decimal pw1 = chercheCorrespondance((double)result * (double)carb2);
-                string resultpw = pw1.ToString();
-                nbP.Text = resultpw;
-                insertResult2();
-                insertImag();
-
-                drawImageTebk();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez Choisir un Text ou un Image!');</script>!');</script>");
 
             }
         }
@@ -568,6 +711,7 @@ namespace PR3.view
                 bitMap = new Bitmap(org.Width, org.Height);
             using (Graphics graph = Graphics.FromImage(bitMap))
             {
+
                 String text = mot;
                 Rectangle ImageSize = new Rectangle(0, 0, bitMap.Width, bitMap.Height);
                 graph.FillRectangle(Brushes.White, ImageSize);
@@ -578,7 +722,6 @@ namespace PR3.view
 
                 String temp = Server.MapPath("/library/font/" + nomFont + ".ttf");
 
-
                 graph.DrawString(text, scalling(graph, temp, text, bitMap.Width, bitMap.Height), Brushes.Black,
                 new Rectangle(0, 0, bitMap.Width, bitMap.Height), strFormat);
             }
@@ -586,6 +729,9 @@ namespace PR3.view
             bitMap.Save(filePath);
             cropimg.Src = "~/crpmg/" + "temp" + extension;
         }
+
+
+
         private Font scalling(Graphics g, String family, string text, int width, int height)
         {
             PrivateFontCollection p = new PrivateFontCollection();
@@ -681,7 +827,7 @@ namespace PR3.view
         {
             if (Rad1.Checked)
             {
-
+                btnUpLoad.Text = "Inserer...";
 
                 TextBox4.ReadOnly = true;
                 TextBox4.BackColor = Color.WhiteSmoke;
@@ -708,9 +854,10 @@ namespace PR3.view
                 nbV.BackColor = Color.WhiteSmoke;
                 Text.ReadOnly = false;
                 Text.BackColor = Color.White;
-                //FU1.Enabled = false;
-                btnUpLoad.Enabled = false;
-
+                 FU1.Enabled = false;
+                btnUpLoad.Enabled = true;
+                 Label4.Visible = true;
+                btnUpLoad.Visible = true;
 
 
             }
@@ -720,7 +867,7 @@ namespace PR3.view
         {
             if (Rad2.Checked)
             {
-
+                btnUpLoad.Text = "Charger...";
                 TextBox4.ReadOnly = true;
                 TextBox4.BackColor = Color.WhiteSmoke;
                 txtpuis.ReadOnly = true;
@@ -746,11 +893,76 @@ namespace PR3.view
                 nbV.BackColor = Color.WhiteSmoke;
                 Text.ReadOnly = true;
                 Text.BackColor = Color.WhiteSmoke;
-                //FU1.Enabled = fals
+                Label4.Visible = true;
+                 FU1.Visible = true;
+                FU1.Enabled = true;
+             
+                FU1.BackColor = Color.White;                
                 btnUpLoad.Enabled = true;
                 Text.Text = "";
-
+                btnUpLoad.Enabled = true;
+               
+                btnUpLoad.Visible = true;
             }
+        }
+
+        protected void Text_TextChanged(object sender, EventArgs e)
+        {
+     }
+
+        private Font scalling2(Graphics g, String family, string text, int width, int height)
+        {
+            Font fontFamily = new Font(family, 10);
+            SizeF RealSize = g.MeasureString(text, fontFamily);
+            float ratio = (float)RealSize.Height / (float)RealSize.Width;
+            float boxRatio = (float)height / (float)width;
+            float ScaleRatio;
+            if (ratio > boxRatio) // (height / Width = r)
+            {
+                //resize  height
+                ScaleRatio = (float)height / (float)RealSize.Height;
+            }
+            else
+            {
+                //resize width
+                ScaleRatio = (float)width / (float)RealSize.Width;
+            }
+            float ScaleFontSize = fontFamily.Size * ScaleRatio * 0.9f;
+            return new Font(fontFamily.FontFamily, ScaleFontSize);
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            let = Text.Text;
+            cropimg.Visible = true;
+            string extension = ".jpg" ;
+            string filePath = Path.Combine(Server.MapPath("~/crpmg"), "temp1" + extension) ;
+            string nomFont = "arial" ;
+
+            Bitmap bitMap = new Bitmap(maxWidth,maxHeight) ;
+
+            using (Graphics graph = Graphics.FromImage(bitMap))
+            {
+
+                String text = let ;
+                Rectangle ImageSize = new Rectangle(0, 0, bitMap.Width, bitMap.Height);
+                graph.FillRectangle(Brushes.White, ImageSize);
+
+                StringFormat strFormat = new StringFormat();
+
+                strFormat.Alignment = StringAlignment.Center;
+                strFormat.LineAlignment = StringAlignment.Center;
+
+                String temp = Server.MapPath(nomFont);
+
+                graph.DrawString(text, scalling2(graph, temp, text, bitMap.Width, bitMap.Height), Brushes.Black,
+                new Rectangle(0, 0, bitMap.Width, bitMap.Height), strFormat);
+            }
+
+            bitMap.Save(filePath);
+            cropimg.Src = "~/crpmg/" + "temp1" + extension;
+          
+         
         }
     }
 }
