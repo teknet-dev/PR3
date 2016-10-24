@@ -117,8 +117,8 @@
         }
 
         .image {
-            margin-top: -43%;
-            margin-left: 54%;
+            margin-top: -60%;
+            margin-left: 80%;
         }
 
         .msbt {
@@ -161,8 +161,6 @@
         
         
 
-        
-
         #croping {
             margin-left: 58%;
             margin-top: -50%;
@@ -186,7 +184,7 @@
             margin-left: 51.5%;
             margin-top: -43.7%;
             width: 110%;
-            height: 90%;
+            height: 100%;
             margin-bottom: -10%;
         }
 
@@ -274,6 +272,10 @@
             width: 214px;
             margin-left: 33px;
             margin-top: 0px;
+        }
+
+       .curseur{
+        cursor: pointer;
         }
 
          @media only screen and (width: 1560px) {

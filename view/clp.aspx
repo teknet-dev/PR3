@@ -271,7 +271,7 @@
                         
                         <td class="auto-style19" style="padding-left:13px" >
                             <%--Ad-hoc --%>
-                            <div style="overflow:scroll ;height:150px ; width: 380px ;margin-left:-26%; border: 2px solid ; border-color:lightgrey ; border-radius:3px">
+                            <div style="overflow:scroll ;height:150px ; width: 380px ;margin-left:-26%; border: 2px solid ; border-color:lightgrey ; border-radius:3px" class="curseur">
                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                     <ContentTemplate>
 							            <asp:GridView BorderStyle="None" AlternatingRowStyle-BackColor="#F0F0F0" ID="LEDList" runat="server" OnRowDataBound="List_DataBound" OnSelectedIndexChanged="List_SelectedIndexChanged" Width="100%" ShowHeaderWhenEmpty="True">
@@ -404,7 +404,7 @@
                 <table  class="image">
                     <tr>
                         <td>      
-                            <asp:Image ID="imgUpload" runat="server" style="margin-left: 194px;" />
+                            <asp:Image ID="imgUpload" runat="server" style="margin-top: -100%" />
                         </td>
                     </tr>
                     
