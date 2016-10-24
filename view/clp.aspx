@@ -26,22 +26,10 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <style type="text/css">
-        .auto-style24 {
-            width: 420px;
-            height: 36px;
-        }
-        .auto-style25 {
-            height: 37px;
-            width: 420px;
-        }
-        .auto-style26 {
-            height: 36px;
-        }
-    </style>
+    
 
 </head>
-    <body classe="body2">
+    <body class="body2">
         <form id="form1" runat="server">
             <asp:ScriptManager ID="ScriptManager1" runat="server"/>
             <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -134,7 +122,7 @@
             <input type="hidden" id="coordinate_x" runat="server" />
 
 
-            <asp:Panel ID="Panel4" runat="server" Height="68px">
+            <asp:Panel ID="Panel4" runat="server" Height="68px" style="margin-top:-3.5%">
                 <div class="msbt">
                     <br />
 

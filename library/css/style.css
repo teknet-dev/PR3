@@ -9,16 +9,6 @@
         }
 
 
-    @media only screen and (max-device-width: 768px) {
-        .ecran {
-            margin-left: 0px;
-            margin-top: 60%;
-        }   
-    }
-
-
-
-
         .auto-style1 {
             width: 56%;
             height: 47px;
@@ -285,3 +275,24 @@
             margin-left: 33px;
             margin-top: 0px;
         }
+
+         @media only screen and (width: 1560px) {
+        .embed-responsive-item {
+            margin-left: 30%;
+            margin-top: 0%;
+         }   
+       }
+
+        @media only screen and (min-width: 1583px) {
+        .embed-responsive-item {
+            margin-left: 38%;
+            margin-top: 0%;
+         }   
+       }
+       
+        @media only screen and (max-device-width: 768px) {
+        .embed-responsive-item {
+            margin-left: 0px;
+            margin-top: 60%;
+        }   
+       }

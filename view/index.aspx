@@ -40,20 +40,23 @@
         <meta name="viewport" content="width=device-width"/>
 
     
-        <link rel="stylesheet" media="handheld, only screen and (max-device-width: 768px)" type="text/css" href="style.css" />
+        <link rel="stylesheet" media="handheld, only screen and (max-device-width: 1600px)" type="text/css" href="style.css" />
       
     </head>
     
-    <body classe="body1">
+    <body class="body1">
         <center>
-            <form id="form" runat="server" class="ecran" >
-                <asp:Panel ID="Panel2" class="pan2" runat="server" Height="142px" Width="224px">
-                    <asp:Image ID="Image1" runat="server" ImageUrl="~/img/cle.gif"  Width="105px" />
-                </asp:Panel>
+            <form id="form" runat="server" class="embed-responsive-item">
 
-                <asp:Label ID="lMOub" runat="server" Text="Mot de passe oublié?" Visible="false" CssClass="text-Oubli" />
                 
-                <asp:Panel ID="Panel1" runat="server" class="pan1" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" Width="588px" Height="254px" style="margin-top: 0px">
+          
+                 <asp:Panel ID="Panel2" class="pan2" runat="server" Height="142px">
+                    <asp:Image ID="Image1" runat="server" ImageUrl="~/img/cle.gif"  Width="105px" />
+                 </asp:Panel>
+
+                 <asp:Label ID="lMOub" runat="server" Text="Mot de passe oublié?" Visible="false" CssClass="text-Oubli" />
+                <div class = "panel-body">
+                  <asp:Panel ID="Panel1" runat="server" class="pan1" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" Width="588px" Height="254px" style="margin-top: 0px">
                     <table class="auto-style23" style="margin-top: 30px;">
                         <tr>
                             <td class="auto-style25" style="line-height: 4;">
@@ -103,6 +106,7 @@
                         </tr>
                     </table>
                 </asp:Panel>
+              </div>
             </form>
         </center>
     </body>
