@@ -75,8 +75,8 @@ namespace PR3.view
             test.BackColor = Color.WhiteSmoke;
             haute.ReadOnly = true;
             haute.BackColor = Color.WhiteSmoke;
-            txtespace.ReadOnly = true;
-            txtespace.BackColor = Color.WhiteSmoke;
+            txtespace.ReadOnly =false;
+            txtespace.BackColor = Color.White;
 
           //  DropDownList2.Enabled = false;
           //  Button1.Enabled = false;
@@ -95,7 +95,7 @@ namespace PR3.view
             FU1.BackColor = Color.WhiteSmoke;
             Label14.BackColor = Color.WhiteSmoke;
             Label4.Visible = true;
-            btnUpLoad.Enabled = false;
+          //  btnUpLoad.Enabled = false;
             btnUpLoad.Visible = false;
            // btnUpLoad.Visible = false;
 
@@ -129,9 +129,9 @@ namespace PR3.view
             Text.ReadOnly = true;
             Text.BackColor = Color.WhiteSmoke;
             Label4.Enabled = true;
-            FU1.Visible = true;
             FU1.Enabled = true;
-            btnUpLoad.Enabled = true;
+            FU1.Enabled = true;
+            btnUpLoad.Visible= true;
 
 
 
@@ -164,12 +164,12 @@ namespace PR3.view
             nbV.BackColor = Color.White;
             Text.ReadOnly = false;
             Text.BackColor = Color.White;
-            FU1.Visible = false;
+            FU1.Enabled = false;
           
             Label4.Enabled = false;
             // FU1.Enabled = false;
             Label4.BackColor = Color.Gray;
-            btnUpLoad.Enabled = false;
+            btnUpLoad.Visible= true;
 
 
 
@@ -307,6 +307,7 @@ namespace PR3.view
 
                 if (FU1.HasFile)
                 {
+                    
                     string ext = Path.GetExtension(FU1.FileName).ToLower();
                     if (ext == ".jpg" || ext == ".jpeg" || ext == ".gif" || ext == ".png")
                     {
@@ -593,115 +594,182 @@ namespace PR3.view
         
           bool retval =true;
           if (txtpuis.Text.Length < 1) retval = false;
+          if (haute.Text.Length < 1) retval = false;
+          if (test.Text.Length < 1) retval = false;
           return retval;
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
-           
+          //  Rad2.Checked = false;
+            AllImg();
+            FU1.Enabled = true;
+            //   btnUpLoad.Enabled = true;
+            btnUpLoad.Visible = true;
+            Label4.Visible = true;
+            btnUpLoad.Visible = true;
+            if (IsvAL())
+            
+            {
+                btnUpLoad.Visible = true;
                 if (Rad1.Checked || Rad2.Checked)
                 {
+                    FU1.Enabled = true;
+                    Label4.Visible = true;
+                    btnUpLoad.Visible = true;
                     string confilename, confilepath;
                     string fileName = Path.GetFileName(imgUpload.ImageUrl);
                     string filePath = Path.Combine(Server.MapPath("~/img"), fileName);
 
                     if (File.Exists(filePath))
                     {
-
-                    if (IsvAL())
-                    {
-                      
-                        // dao();
-                        System.Globalization.NumberFormatInfo provider = new System.Globalization.NumberFormatInfo();
-                        provider.NumberDecimalSeparator = ",";
-                        provider.NumberGroupSeparator = ".";
-                        decimal carb = Convert.ToDecimal(txtpuis.Text, provider);
-                        decimal ht = Convert.ToDecimal(haute.Text, provider);
-                        decimal ll = Convert.ToDecimal(test.Text, provider);
-                        //  decimal res = Convert.ToDecimal(txtpuis.Text, provider);
-                        if (txtespace.Text.Equals(""))
+                        if (Rad2.Checked)
                         {
-                            decimal result = (ht * ll);
-                            //puissance         
-                            string afresult = result.ToString();
-                            nbLed.Text = afresult;
-                            decimal res = Convert.ToDecimal(result, provider);
-                            decimal pw1 = chercheCorrespondance((double)res * (double)carb);
-                            string resultpw = pw1.ToString();
-                            nbP.Text = resultpw;
+                            AllImg();
+                            FU1.Enabled = true;
+                         //   btnUpLoad.Enabled = true;
+                            btnUpLoad.Visible = true;
+                            Label4.Visible = true;
+                          
 
-                            insertImag();
-                            insertResult();
+                        }
+                        if (Rad1.Checked)
+                        {
+
+                        //    AllText();
+                            FU1.Enabled = true;
+                           // btnUpLoad.Enabled = true;
+                            Label4.Visible = true;
+                            btnUpLoad.Visible = true;
+                            DropDownList2.Enabled = true;
+
+                        }
+
+
+
+                        if (IsvAL())
+                        {
+
+                            // dao();
+                            System.Globalization.NumberFormatInfo provider = new System.Globalization.NumberFormatInfo();
+                            provider.NumberDecimalSeparator = ",";
+                            provider.NumberGroupSeparator = ".";
+                            decimal carb = Convert.ToDecimal(txtpuis.Text, provider);
+                            decimal ht = Convert.ToDecimal(haute.Text, provider);
+                            decimal ll = Convert.ToDecimal(test.Text, provider);
+                            //  decimal res = Convert.ToDecimal(txtpuis.Text, provider);
+                            if (txtespace.Text.Equals(""))
+                            {
+                                decimal result = (ht * ll);
+                                //puissance         
+                                string afresult = result.ToString();
+                                nbLed.Text = afresult;
+                                decimal res = Convert.ToDecimal(result, provider);
+                                decimal pw1 = chercheCorrespondance((double)res * (double)carb);
+                                string resultpw = pw1.ToString();
+                                nbP.Text = resultpw;
+
+                                insertImag();
+                                insertResult();
+                            }
+                            else
+                            {
+                                int k;
+                                int echelle = 1;
+                                switch (DropDownList2.SelectedIndex)
+                                {
+                                    case 0: k = 3; break;
+                                    case 1: k = 5; break;
+                                    case 2: k = 7; break;
+                                    default: k = 9; break;
+                                }
+                                decimal carb2 = Convert.ToDecimal(txtpuis.Text, provider);
+
+                                decimal ht2 = Convert.ToDecimal(haute.Text, provider); // Height
+
+                                //nb led.
+                                decimal result = Convert.ToInt32((echelle * ht2 * k * nbC) * Convert.ToInt32(LEDList.SelectedRow.Cells[9].Text) / (1000));
+
+                                string afresult = result.ToString(); // Entier
+                                nbLed.Text = afresult;
+
+                                //puissance
+                                decimal pw1 = chercheCorrespondance((double)result * (double)carb2);
+                                string resultpw = pw1.ToString();
+                                nbP.Text = resultpw;
+                                insertResult2();
+                                insertImag();
+
+                                drawImageTebk();
+
+
+
+                            }
                         }
                         else
                         {
-                            int k;
-                            int echelle = 1;
-                            switch (DropDownList2.SelectedIndex)
-                            {
-                                case 0: k = 3; break;
-                                case 1: k = 5; break;
-                                case 2: k = 7; break;
-                                default: k = 9; break;
-                            }
-                            decimal carb2 = Convert.ToDecimal(txtpuis.Text, provider);
 
-                            decimal ht2 = Convert.ToDecimal(haute.Text, provider); // Height
-
-                            //nb led.
-                            decimal result = Convert.ToInt32((echelle * ht2 * k * nbC) * Convert.ToInt32(LEDList.SelectedRow.Cells[9].Text) / (1000));
-
-                            string afresult = result.ToString(); // Entier
-                            nbLed.Text = afresult;
-
-                            //puissance
-                            decimal pw1 = chercheCorrespondance((double)result * (double)carb2);
-                            string resultpw = pw1.ToString();
-                            nbP.Text = resultpw;
-                            insertResult2();
-                            insertImag();
-
-                            drawImageTebk();
-                            if (Rad2.Checked)
-                            {
-                                AllImg();
-                                FU1.Visible = true;
-                                btnUpLoad.Enabled = true;
-                                Label4.Visible = true;
-                                btnUpLoad.Visible = true;
-                            }
-                            if (Rad1.Checked)
-                            {
-
-                                AllText();
-                                FU1.Visible = false;
-                                btnUpLoad.Enabled = true;
-                                Label4.Visible = false;
-                                btnUpLoad.Visible = true;
-
-                            }
-
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez selectionner le type de LED');</script>");
+                            btnUpLoad.Visible = true;
+                            FU1.Enabled = true;
+                            Label4.Visible = true;
+                            AllImg();
+                            FU1.Enabled = true;
+                            //   btnUpLoad.Enabled = true;
+                            btnUpLoad.Visible = true;
+                            Label4.Visible = true;
                         }
                     }
                     else
                     {
 
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez selectionner le type de LED');</script>");
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Choisissez le mode que vous aimerez utiliser');</script>");
 
+                        btnUpLoad.Visible = true;
+                        FU1.Enabled = true;
+                        Label4.Visible = true;
+                        AllImg();
+                        FU1.Enabled = true;
+                        //   btnUpLoad.Enabled = true;
+                        btnUpLoad.Visible = true;
+                        Label4.Visible = true;
                     }
                 }
                 else
                 {
 
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Choisissez le mode que vous aimerez utiliser');</script>");
-
-
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Choisissez le mode que vous aimerez utiliser');</script>!');</script>");
+                    btnUpLoad.Visible = true;
+                    FU1.Enabled = true;
+                    Label4.Visible = true;
+                    AllImg();
+                    FU1.Enabled = true;
+                    //   btnUpLoad.Enabled = true;
+                    btnUpLoad.Visible = true;
+                    Label4.Visible = true;
                 }
             }
-            else {
-
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Choisissez le mode que vous aimerez utiliser');</script>!');</script>");
-
+            else { 
+            
+               Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez selectionner le type de LED');</script>");
+               btnUpLoad.Visible = true;
+               Label4.Visible = true;
+               AllImg();
+               FU1.Enabled = true;
+               //   btnUpLoad.Enabled = true;
+               btnUpLoad.Visible = true;
+               Label4.Visible = true;
             }
+
+            //    nbLettreTxt;
+            //    Point point = new Point(0,0);
+            //Point position=point;
+            //while (position.X == 0) { 
+            
+            //position=
+            //}
+
+
+
         }
 
         protected void drawImageTebk()
@@ -840,7 +908,9 @@ namespace PR3.view
             if (Rad1.Checked)
             {
                 btnUpLoad.Text = "Inserer...";
-
+                panCrop.Visible = false;
+                cropimg.Visible = false;
+                vide();
                 TextBox4.ReadOnly = true;
                 TextBox4.BackColor = Color.WhiteSmoke;
                 txtpuis.ReadOnly = true;
@@ -850,10 +920,10 @@ namespace PR3.view
                 test.BackColor = Color.WhiteSmoke;
                 haute.ReadOnly = true;
                 haute.BackColor = Color.WhiteSmoke;
-                txtespace.ReadOnly = true;
-                txtespace.BackColor = Color.WhiteSmoke;
+                txtespace.ReadOnly = false;
+                txtespace.BackColor = Color.White;
 
-                DropDownList2.Enabled = false;
+                DropDownList2.Enabled = true;
                 Button1.Enabled = false;
 
                 nbLed.ReadOnly = true;
@@ -861,7 +931,7 @@ namespace PR3.view
 
                 nbP.ReadOnly = true;
                 nbP.BackColor = Color.WhiteSmoke;
-
+                Button1.Enabled = true;
                 nbV.ReadOnly = true;
                 nbV.BackColor = Color.WhiteSmoke;
                 Text.ReadOnly = false;
@@ -875,6 +945,17 @@ namespace PR3.view
             }
         }
 
+        public void vide() {
+
+            txtpuis.Text = "";
+            haute.Text = "";
+            nbLed.Text = "";
+            nbP.Text = "";
+            nbV.Text = "";
+            test.Text = "";
+            txtespace.Text = "";
+
+        }
         protected void Rad2_CheckedChanged(object sender, EventArgs e)
         {
             if (Rad2.Checked)
@@ -892,7 +973,7 @@ namespace PR3.view
                 txtespace.ReadOnly = true;
                 txtespace.BackColor = Color.WhiteSmoke;
 
-                DropDownList2.Enabled = false;
+                DropDownList2.Enabled = true;
                 Button1.Enabled = false;
 
                 nbLed.ReadOnly = true;
@@ -908,7 +989,7 @@ namespace PR3.view
                 Label4.Visible = true;
                  FU1.Visible = true;
                 FU1.Enabled = true;
-             
+                Button1.Enabled = true;
                 FU1.BackColor = Color.White;                
                 btnUpLoad.Enabled = true;
                 Text.Text = "";
