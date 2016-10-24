@@ -3,19 +3,12 @@
             height:100%!important;     
         }
 
-
-
-
-
     @media only screen and (max-device-width: 768px) {
         .ecran {
             margin-left: 0px;
             margin-top: 60%;
         }   
     }
-
-
-
 
         .auto-style1 {
             width: 56%;
@@ -125,7 +118,7 @@
         }
 
         .image {
-            margin-top: -43%;
+            margin-top: -54%;
             margin-left: 54%;
         }
 
@@ -166,15 +159,6 @@
             font-size:25px;
         }
         
-        
-
-        
-        
-        
-        
-        
-
-        
 
         #croping {
             margin-left: 58%;
@@ -197,7 +181,7 @@
             border-color: inherit;
             border-width: 1px;
             margin-left: 50%;
-            margin-top: -45%;
+            margin-top: -42%;
             width: 110%;
             height: 95%;
         }

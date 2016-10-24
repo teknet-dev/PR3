@@ -1,2 +1,0 @@
-﻿Ce fichier ne sert pas à grand chose.... mais ne l'effacer pas car ceci permet d'inclure ce dossier dans le "package" de déploiement.
-Autrement, la page aura des bugs lors du "crop" de l'image importé.

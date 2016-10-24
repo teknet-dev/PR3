@@ -98,7 +98,8 @@ namespace PR3.view
             btnUpLoad.Enabled = false;
             btnUpLoad.Visible = false;
            // btnUpLoad.Visible = false;
-           
+
+            btnUpLoad.ForeColor = Color.White;
         }
         public void AllImg()
         {
@@ -166,6 +167,8 @@ namespace PR3.view
             FU1.Visible = false;
           
             Label4.Enabled = false;
+            // FU1.Enabled = false;
+            Label4.BackColor = Color.Gray;
             btnUpLoad.Enabled = false;
 
 
@@ -232,16 +235,17 @@ namespace PR3.view
             if (File.Exists(filePath))
             {
                 System.Drawing.Image orgImg = System.Drawing.Image.FromFile(filePath);
-                Rectangle CropArea = new Rectangle
-                (
-                    Convert.ToInt32(X.Value),
-                    Convert.ToInt32(Y.Value),
-                    Convert.ToInt32(W.Value),
-                    Convert.ToInt32(H.Value)
-                );
 
                 try
                 {
+                    Rectangle CropArea = new Rectangle
+                    (
+                        Convert.ToInt32(X.Value),
+                        Convert.ToInt32(Y.Value),
+                        Convert.ToInt32(W.Value),
+                        Convert.ToInt32(H.Value)
+                    );
+               
                     Bitmap bitMap = new Bitmap(CropArea.Width, CropArea.Height);
                     using (Graphics g = Graphics.FromImage(bitMap))
                     {
@@ -284,9 +288,13 @@ namespace PR3.view
 
                     }
                 }
+                catch (FormatException)
+                {
+                    ClientScript.RegisterStartupScript(GetType(), "Erreur Crop", "alert('Veuillez d\\'abord choisir la zone à redimensionner')", true);
+                }
                 catch
                 {
-                    throw;
+                    throw ;
                 }
             }
         }
@@ -330,7 +338,7 @@ namespace PR3.view
                             btnCrop.Visible = true;
                             cropimg.Visible = false;
                             FU1.Visible = true;
-
+                            lblMsg.Visible = true;
                             btnUpLoad.Enabled = true;
                             Text.ReadOnly = true;
                             Text.BackColor = Color.White;
@@ -350,11 +358,13 @@ namespace PR3.view
                             btnUpLoad.Enabled = true;
                             Label4.Visible = true;
                             btnUpLoad.Visible = true;
+                            lblMsg.Visible = true;
+
                         }
                     }
                     else
                     {
-                        lblMsg.Text = "Sélectionnez le type de fichier non autorisé!";
+                        lblMsg.Text = "Veuillez selectionner un fichier!";
                         FU1.Visible = true;
                         btnUpLoad.Enabled = true;
                         Text.ReadOnly = true;
@@ -362,12 +372,13 @@ namespace PR3.view
                         btnUpLoad.Enabled = true;
                         Label4.Visible = true;
                         btnUpLoad.Visible = true;
+                        lblMsg.Visible = true;
                     }
 
                 }
                 else
                 {
-                    lblMsg.Text = "S'il vous plaît sélectionner le fichier premier!";
+                    lblMsg.Text = "Veuillez selectionner un fichier";
                     FU1.Visible = true;
                     btnUpLoad.Enabled = true;
                     Text.ReadOnly = true;
@@ -375,6 +386,7 @@ namespace PR3.view
                     btnUpLoad.Enabled = true;
                     Label4.Visible = true;
                     btnUpLoad.Visible = true;
+                    lblMsg.Visible = true;
                 }
 
             }
@@ -673,21 +685,21 @@ namespace PR3.view
                     else
                     {
 
-                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez Verifier le Puissance!');</script>");
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez selectionner le type de LED');</script>");
 
                     }
                 }
                 else
                 {
 
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez Inserer un Text ou un Image!');</script>");
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Choisissez le mode que vous aimerez utiliser');</script>");
 
 
                 }
             }
             else {
 
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez Choisir un Text ou un Image!');</script>!');</script>");
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Choisissez le mode que vous aimerez utiliser');</script>!');</script>");
 
             }
         }
@@ -858,7 +870,7 @@ namespace PR3.view
                 btnUpLoad.Enabled = true;
                  Label4.Visible = true;
                 btnUpLoad.Visible = true;
-
+                lblMsg.Visible = false;
 
             }
         }
@@ -901,7 +913,7 @@ namespace PR3.view
                 btnUpLoad.Enabled = true;
                 Text.Text = "";
                 btnUpLoad.Enabled = true;
-               
+                lblMsg.Visible = false;
                 btnUpLoad.Visible = true;
             }
         }

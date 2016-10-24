@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="clp.aspx.cs" Inherits="PR3.view.pr3" EnableEventValidation="false" %>
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -27,19 +26,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <style type="text/css">
-        .auto-style24 {
-            width: 420px;
-            height: 36px;
-        }
-        .auto-style25 {
-            height: 37px;
-            width: 420px;
-        }
-        .auto-style26 {
-            height: 36px;
-        }
-    </style>
+    
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -80,7 +67,7 @@
 
 
 </head>
-    <body>
+    <body class="body2">
         <form id="form1" runat="server">
             <asp:ScriptManager ID="ScriptManager1" runat="server"/>
             <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -122,7 +109,7 @@
             
             <br /> 
 
-            <asp:Panel ID="Panel3" runat="server" style="margin-left: 25%" Width="657px">
+            <asp:Panel ID="Panel3" runat="server" style="margin-left: 25%; margin-top: -2%" Width="657px">
                 <table class="auto-style1">
                     <tr>
                         <td class="auto-style3">
@@ -178,7 +165,7 @@
             <input type="hidden" id="coordinate_x" runat="server" />
 
 
-            <asp:Panel ID="Panel4" runat="server" Height="68px">
+            <asp:Panel ID="Panel4" runat="server" Height="68px" style="margin-top:-3.5%">
                 <div class="msbt">
                     <br />
 
@@ -203,7 +190,7 @@
                </asp:Label> 
              </td>
              <td class="auto-style26">
-                      <asp:Button ID="btnUpLoad" class=" btn btn-primary" runat="server" Text="Charger..." OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
+                      <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
              </td>
            </tr>
                         
@@ -222,7 +209,7 @@
                 </div>
             </asp:Panel> 
 
-            <asp:Panel ID="Panel1" runat="server" Height="482px" Width="499px">
+            <asp:Panel ID="Panel1" runat="server" Height="482px" Width="499px" style="margin-top:-2.5%">
                 <table class="auto-style4">
 
                 <tr>
@@ -284,7 +271,7 @@
                         
                         <td class="auto-style19" style="padding-left:13px" >
                             <%--Ad-hoc --%>
-                            <div style="overflow:scroll ;height:150px ; width: 400px ;margin-left:-24%; border: 2px solid ; border-color:lightgrey ; border-radius:3px">
+                            <div style="overflow:scroll ;height:150px ; width: 380px ;margin-left:-26%; border: 2px solid ; border-color:lightgrey ; border-radius:3px">
                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                     <ContentTemplate>
 							            <asp:GridView BorderStyle="None" AlternatingRowStyle-BackColor="#F0F0F0" ID="LEDList" runat="server" OnRowDataBound="List_DataBound" OnSelectedIndexChanged="List_SelectedIndexChanged" Width="100%" ShowHeaderWhenEmpty="True">
@@ -359,7 +346,7 @@
                         <td class="auto-style19">
 				            <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                                 <ContentTemplate>
-						            <asp:TextBox class="form-control"  ID="txtespace" runat="server" Width="280px" Height="40px" />
+						            <asp:TextBox class="form-control" value="" ID="txtespace" runat="server" Width="280px" Height="40px" />
         					    </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>   
@@ -387,7 +374,9 @@
                         <td class="auto-style19" />
                         
                         <td class="auto-style19">
-                            <asp:Button ID="Button1" runat="server" class=" btn btn-primary" OnClick="Button1_Click" Text="Calcul" Width="280px" Height="40px" />
+                            
+                               <asp:Button ID="Button1" runat="server" class=" btn btn-primary" OnClick="Button1_Click" Text="Calcul" Width="280px" Height="40px" />
+                           
                         </td>
                     </tr>
                 </table>
@@ -397,7 +386,7 @@
                 <img src="#" id="cropimg" runat="server" visible="false" style="margin-top: -40%;margin-left: 80%;" />
             </asp:Panel> 
             
-            <div id="rectangle">        
+            <div id="rectangle" class="form-control">        
                 <a id="minusBtn" onclick="minus()" style="cursor: pointer;">
                     <img src="../Images/zoommoins.png" style="height: 5%;margin-left: 5%;" />
                 </a>

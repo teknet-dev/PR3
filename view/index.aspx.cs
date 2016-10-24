@@ -1,14 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Configuration;
-using System.Web.Mail;
+using System.Net.Mail;
 using System.Web.UI;
 
 namespace PR3.view
 {
     public partial class index : System.Web.UI.Page
     {
-        private const string mailEnvoyeur = "you@moov.mg";
         private const string sujetMail = "Récupération du mot de passe. A ne pas répondre" ;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -114,20 +113,42 @@ namespace PR3.view
                 return;
             }
 
-            MailMessage email = new MailMessage();
-            email.From = mailEnvoyeur;
-            email.To = adresseClient ;
-            email.Subject = sujetMail;
-            email.Body = "Ceci est un test provenant du site web \"calepinage\", est-ce-que tu l'a reçu?\nOK\nA bientôt..." ;
-            email.Priority = MailPriority.High;
-            SmtpMail.SmtpServer = "smtp.moov.mg" ;
+
             try
             {
-                SmtpMail.Send(email);
+                string body = "Ceci est un test provenant du site web \"calepinage\"....\nOK c'est bon\nA bientôt..." ;
+                string senderMail = ConfigurationManager.AppSettings["MailEnvoyeur"] ;
+                string senderName = ConfigurationManager.AppSettings["NomEnvoyeur"];
+                string senderPass = ConfigurationManager.AppSettings["MDPEnvoyeur"] ;
+
+                MailMessage email = new MailMessage();
+                email.From = new MailAddress(senderMail,senderName) ;
+                email.To.Add(adresseClient);
+                email.Subject = sujetMail;
+                email.Body = body;
+                email.IsBodyHtml = true;
+                email.Priority = MailPriority.Normal;
+
+                SmtpClient emailClient = new SmtpClient () ;
+                emailClient.Host = ConfigurationManager.AppSettings["ServeurSMTP"];
+                emailClient.Port = Convert.ToInt32 (ConfigurationManager.AppSettings["NumPort"]);
+
+                if (senderPass != "")
+                {
+                    System.Net.NetworkCredential SMTPUserInfo = new System.Net.NetworkCredential
+                        (
+                            senderMail,
+                            senderPass
+                        );
+                    emailClient.Credentials = SMTPUserInfo;
+                    emailClient.EnableSsl = true ;
+                }
+
+                emailClient.Send(email);
             }
             catch (Exception ex)
             {
-                lMOub.Text = ex.Message;
+                //lMOub.Text = ex.Message ;
             }
         }
 
