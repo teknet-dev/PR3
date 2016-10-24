@@ -60,10 +60,6 @@
     <IncludeIisSettings>true</IncludeIisSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ControlExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\ControlExtensions.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -83,6 +79,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -255,7 +252,7 @@
     <Content Include="library\font\advanced_dot_digital-7.ttf" />
     <Content Include="library\font\enhanced_dot_digital-7.ttf" />
     <Content Include="library\font\triple_dot_digital-7.ttf" />
-    <None Include="Properties\PublishProfiles\deployPR3-64.pubxml" />
+    <None Include="Properties\PublishProfiles\deploy-PR3x64.pubxml" />
     <None Include="Properties\PublishProfiles\deploypr3.pubxml" />
     <None Include="Properties\PublishProfiles\pack.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
