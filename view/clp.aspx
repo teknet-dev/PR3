@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head id="Head1" runat="server">
+<head id="Head1" runat="server">    
     <title></title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -108,7 +108,7 @@
             <br />
             
             <br /> 
-
+                
             <asp:Panel ID="Panel3" runat="server" style="margin-left: 25%; margin-top: -2%" Width="657px">
                 <table class="auto-style1">
                     <tr>
@@ -172,7 +172,7 @@
                     <table>
                         <tr>
                <td class="auto-style24">
-                   <asp:TextBox ID="Text" class="form-control" runat="server" Width="394px" CausesValidation="True" OnTextChanged="Text_TextChanged"></asp:TextBox>
+                   <asp:TextBox ID="Text" class="form-control" runat="server" Width="331px" style="margin: 1px 0 0 -64px;" CausesValidation="True" OnTextChanged="Text_TextChanged"></asp:TextBox>
                </td>
 
                <td class="auto-style24">
@@ -183,14 +183,14 @@
                </td>
 
              <td class="auto-style26">
-                <asp:Label ID="Label4" runat="server" class="btn btn-primary ">
-                    <span id="gg">Parcourir...</span>
+                <asp:Label ID="Label4" runat="server" class="btn btn-primary " style="width: 298px; height: 35px;">
+                    <span >Parcourir...</span>
                     <asp:FileUpload ID="FU1" runat="server" Class="file" data-icon="false" /> 
                    
                </asp:Label> 
              </td>
              <td class="auto-style26">
-                      <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
+                      <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" style="width: 298px; height: 35px;margin-left: 10%;"/>  
              </td>
            </tr>
                         
@@ -380,6 +380,7 @@
                         </td>
                     </tr>
                 </table>
+                
             </asp:Panel>
 
             <asp:Panel ID="Panel2" runat="server" class="crop">
@@ -406,28 +407,27 @@
                         <td>      
                             <asp:Image ID="imgUpload" runat="server" style="margin-top: -100%" />
                         </td>
+                     
                     </tr>
-                    
-                    <tr>
-                        <td> 
-                            <asp:Button class=" btn btn-primary" ID="btnCrop" runat="server" OnClick="btnCrop_Click1" Text="Redimensionner"  visible="false" style="height:40px;width:280px;    margin-left: 16%;margin-top: 5%;" />
-                        </td>
-                        
-                        <td >
-                            <asp:HiddenField ID="X" runat="server" />
-                            
-                            <asp:HiddenField ID="Y" runat="server" />
-                            
-                            <asp:HiddenField ID="W" runat="server" />
-                            
-                            <asp:HiddenField ID="H" runat="server" />
-                        </td>
-                    </tr>
-                </table>
+                </table> 
+               
             </asp:Panel>
-            
+           
             <asp:Panel ID="Panel" runat="server">
-                <table class="resultat">
+                <table class="resultat" style="left: 0%; top: 91%; position: absolute;">
+                    <tr>
+                        <td>
+                             <asp:Button class=" btn btn-primary" ID="btnCrop" runat="server" OnClick="btnCrop_Click1" Text="Redimensionner"  visible="false" style="height:40px;width:280px; margin-left: 132%; margin-top: -50%;" />
+                        
+                             <asp:HiddenField ID="X" runat="server" />
+                            
+                             <asp:HiddenField ID="Y" runat="server" />
+                            
+                             <asp:HiddenField ID="W" runat="server" />
+                            
+                             <asp:HiddenField ID="H" runat="server" />
+                        </td>
+                    </tr>
                     <tr>
                         <td class="auto-style22">
                             <asp:Label ID="Label2" runat="server" Text="R&eacute;sultats" style="" Font-Overline="False" Font-Size="Large" Font-Underline="True" />

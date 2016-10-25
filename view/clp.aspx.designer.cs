@@ -607,6 +607,15 @@ namespace PR3.view {
         protected global::System.Web.UI.WebControls.Image imgUpload;
         
         /// <summary>
+        /// Contrôle Panel.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel;
+        
+        /// <summary>
         /// Contrôle btnCrop.
         /// </summary>
         /// <remarks>
@@ -650,15 +659,6 @@ namespace PR3.view {
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField H;
-        
-        /// <summary>
-        /// Contrôle Panel.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel;
         
         /// <summary>
         /// Contrôle Label2.
