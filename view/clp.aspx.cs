@@ -758,6 +758,8 @@ namespace PR3.view
 
         }
 
+
+
         protected void drawImageTebk()
         {
             string extension = Path.GetExtension(cropimg.Src);
