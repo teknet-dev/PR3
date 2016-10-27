@@ -40,7 +40,8 @@
         <meta name="viewport" content="width=device-width"/>
 
     
-        <link rel="stylesheet" media="handheld, only screen and (max-device-width: 1600px)" type="text/css" href="style.css" />
+        <link rel="stylesheet" media="screen and (max-width: 768px)" href="style.css" />
+
       
     </head>
     

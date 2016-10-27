@@ -65,13 +65,11 @@
     });
 
 
-    
-  
-
-
-
 </script>
 
+    <link rel="stylesheet" media="screen and (max-width: 768px)" href="style.css" />
+
+    <meta name="viewport" content="width=device-width"/>
 
 </head>
     <body class="body2">
@@ -199,7 +197,7 @@
                     <asp:FileUpload ID="FU1" runat="server" Class="file" data-icon="false" Visible="false"/> 
                    
                </asp:Label></td><td class="auto-style26">
-                      <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
+                      <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" Height="35px" style="margin-left:20%;width:298px;"/>  
 
              </td>
           
@@ -281,7 +279,7 @@
                         
                         <td class="auto-style19" style="padding-left:13px" >
                             <%--Ad-hoc --%>
-                            <div style="overflow:scroll ;height:150px ; width: 380px ;margin-left:-26%; border: 2px solid ; border-color:lightgrey ; border-radius:3px" class="curseur">
+                            <div class="curseur1">
                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                     <ContentTemplate>
 							            <asp:GridView BorderStyle="None" AlternatingRowStyle-BackColor="#F0F0F0" ID="LEDList" runat="server" OnRowDataBound="List_DataBound" OnSelectedIndexChanged="List_SelectedIndexChanged" Width="100%" ShowHeaderWhenEmpty="True">
@@ -385,7 +383,7 @@
             </asp:Panel>
 
             <asp:Panel ID="Panel2" runat="server" class="crop">
-                <img src="#" id="cropimg" runat="server" visible="false" style="margin-top: -40%;margin-left: 80%;" />
+                <img src="#" id="cropimg" runat="server" visible="false" class="curseur2"/>
             </asp:Panel> 
             
             <div id="rectangle" class="form-control">        

@@ -274,62 +274,62 @@
             margin-top: 0px;
         }
 
-       .curseur{
+       .curseur1{
         cursor: pointer;
+        overflow: scroll;
+        height:150px; 
+        width: 380px;
+        margin-left:-26%; 
+        border: 2px solid ;
+        border-color:lightgrey ;
+        border-radius:3px;
         }
 
-         @media only screen and (width: 1560px) {
+       .curseur2{
+        cursor: move;
+        margin-top: -35%;
+        margin-left: 80%;
+        }
+
+      
         .embed-responsive-item {
             margin-left: 30%;
             margin-top: 0%;
          }   
-       }
+       
 
-        @media only screen and (min-width: 1583px) {
-        .embed-responsive-item {
-            margin-left: 38%;
-            margin-top: 0%;
+       @media only screen and (max-width: 768px) {
+        
+         .embed-responsive-item {
+            margin-left: 0%;
+            margin-top: 40%;
          }   
        }
        
-        @media only screen and (max-device-width: 768px) {
-        .embed-responsive-item {
-            margin-left: 0px;
-            margin-top: 60%;
-        }   
+       @media screen and (max-device-width: 414px) {
+        
+         .resultat {
+           display: block;
+           left: 42%;
+           top: 45%;
+           position: absolute;
+         }   
        }
-         @media only screen and (width: 1600px) {
-        .responsiveresul {
-            left: 0%;
-            top: 91%;
-            position:absolute
+      
+        @media screen and (min-device-width: 415px) {
+        
+         .resultat {
+           left: 26%;
+           top: 95%;
+           position: absolute;
          }   
        }
 
-         @media only screen and (max-width: 768px) {
-        .embed-responsive-item {
-            margin-left: 20%;
-            margin-top: -90%;
-        }  
+       @media only screen and (width: 768px) {
+        
+         .resultat {
+           left: 23%;
+           top: 75%;
+           position: absolute;
+         }   
        }
-         
-        @media only screen and (min-width: 768px) {
-        .responsiveresul{
-            margin-top: -52%;
-            margin-left: 18%;
-         } 
-        }
-        @media only screen and (max: 768px) {
-         #btnCrop {
-            margin-left: 30%;
-            margin-top: -48%;
-        }  
-       }
-        @media only screen and (min-width: 415px) {
-         #btnCrop {
-            margin-left: 30%;
-            margin-top: -89%;
-        }  
-       }
-       
- 
