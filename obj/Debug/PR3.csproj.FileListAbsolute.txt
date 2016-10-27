@@ -227,3 +227,4 @@ D:\PROJET\CALEPINAGE\src\PR3\bin\fr\System.Web.Optimization.resources.dll
 D:\PROJET\CALEPINAGE\src\PR3\bin\fr\System.Web.Providers.resources.dll
 D:\PROJET\CALEPINAGE\src\PR3\bin\fr\Microsoft.AspNet.Membership.OpenAuth.resources.dll
 D:\PROJET\CALEPINAGE\src\PR3\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
+D:\PROJET\CALEPINAGE\src\PR3\obj\Debug\PR3.csprojResolveAssemblyReference.cache
