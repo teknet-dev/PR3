@@ -63,6 +63,13 @@
         }
 
     });
+
+
+    
+  
+
+
+
 </script>
 
 
@@ -174,22 +181,24 @@
                <td class="auto-style24">
                    <asp:TextBox ID="Text" class="form-control" runat="server" Width="394px" CausesValidation="True" OnTextChanged="Text_TextChanged"></asp:TextBox>
                </td>
-
-               <td class="auto-style24">
-                   <asp:Button ID="Button2" runat="server" class=" btn btn-primary" Text="Inserer.." OnClick="Button2_Click" />
+                <td class="auto-style24" style="margin-right:20%">
+                    <asp:DropDownList class="form-control" ID="DropDownList1" runat="server" AutoPostBack="True" Height="32px" Width="232px" CausesValidation="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1"></asp:DropDownList>
                </td>
+             <td class="auto-style24">
+              </td>
+               <td class="auto-style24">
+                   &nbsp;</td>
                  <td class="auto-style26">
                   &nbsp;&nbsp;&nbsp;
                </td>
 
              <td class="auto-style26">
-                <asp:Label ID="Label4" runat="server" class="btn btn-primary ">
-                    <span id="gg">Parcourir...</span>
-                    <asp:FileUpload ID="FU1" runat="server" Class="file" data-icon="false" /> 
+                <asp:Label ID="Label4" runat="server" class="btn btn-primary " Visible="false">
+                    <%--<span id="gg">Parcourir...</span>--%>
+                    <asp:Label runat="server" ID="lParcourir" Text="Parcourir..." Visible="false"/>
+                    <asp:FileUpload ID="FU1" runat="server" Class="file" data-icon="false" Visible="false"/> 
                    
-               </asp:Label> 
-             </td>
-             <td class="auto-style26">
+               </asp:Label></td><td class="auto-style26">
                       <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
              </td>
            </tr>
@@ -214,14 +223,13 @@
 
                 <tr>
                 <td class="radio1">
-                    &nbsp;&nbsp;&nbsp;
-                   <asp:RadioButton ID="Rad1" runat="server" OnCheckedChanged="Rad1_CheckedChanged"  Text="Text" AutoPostBack="true"  GroupName="measurementSystem" />
+                    &nbsp;&nbsp;&nbsp; <asp:RadioButton ID="Rad1" runat="server" OnCheckedChanged="Rad1_CheckedChanged"  Text="Text" AutoPostBack="true"  GroupName="measurementSystem" />
                 </td>
                 <td class="radio2">
                    <asp:RadioButton ID="Rad2" runat="server" OnCheckedChanged="Rad2_CheckedChanged"  Text="Images,Logo,Symbole.."  AutoPostBack="true"  GroupName="measurementSystem"/>
                 </td>
-               </tr>
-                    <tr>
+                <td>
+                    &nbsp;</td></tr><tr>
                         <td class="auto-style19">
                             <div class="form-group">
                                 <asp:Label ID="Label10" runat="server" Text="Epaisseur" />
@@ -360,17 +368,8 @@
                         </td>
                         
                         <td class="auto-style19">
-                            <asp:DropDownList  class="form-control" ID="DropDownList2" runat="server" Width="280px" Height="40px">
-                                <asp:ListItem>Simple</asp:ListItem>
-
-                                <asp:ListItem>Double</asp:ListItem>
-
-                                <asp:ListItem>Triple</asp:ListItem>
-                            </asp:DropDownList>
-                        </td>
-                    </tr>
-                    
-                    <tr>
+                            <asp:DropDownList  class="form-control" ID="DropDownList2" runat="server" Width="280px" Height="40px" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
+                                <asp:ListItem>Simple</asp:ListItem><asp:ListItem>Double</asp:ListItem><asp:ListItem>Triple</asp:ListItem></asp:DropDownList></td></tr><tr>
                         <td class="auto-style19" />
                         
                         <td class="auto-style19">
@@ -388,19 +387,9 @@
             
             <div id="rectangle" class="form-control">        
                 <a id="minusBtn" onclick="minus()" style="cursor: pointer;">
-                    <img src="../Images/zoommoins.png" style="height: 5%;margin-left: 5%;" />
-                </a>
+                    <img src="../Images/zoommoins.png" style="height: 5%;margin-left: 5%;" /> </a>&nbsp;
                 
-                &nbsp;
-                
-                &nbsp;
-                
-                <a id="plusBtn" onclick="plus()" style="cursor: pointer;">
-                    <img src="../Images/zoomplus.png" style="height: 5%;" />
-                </a>
-            </div>
-            
-            <asp:Panel ID="panCrop" runat="server" visible="false">
+                &nbsp; <a id="plusBtn" onclick="plus()" style="cursor: pointer;"><img src="../Images/zoomplus.png" style="height: 5%;" /> </a></div><asp:Panel ID="panCrop" runat="server" visible="false">
                 <table  class="image">
                     <tr>
                         <td>      
@@ -444,11 +433,7 @@
                         </td>
                         
                         <td class="auto-style18">
-                            &nbsp;Modules
-                        </td>
-                    </tr>
-                    
-                    <tr>
+                            &nbsp;Modules </td></tr><tr>
                         <td class="auto-style22">
                             <asp:Label ID="pw" runat="server" Text="Puissance Totale" />
                         </td>
@@ -458,11 +443,7 @@
                         </td>
                         
                         <td class="auto-style18">
-                            &nbsp;Watts
-                        </td>
-                    </tr>
-                    
-                    <tr>
+                            &nbsp;Watts </td></tr><tr>
                         <td class="auto-style22">
                             <asp:Label ID="alim" runat="server" Text="Alimentation" />
                         </td>
@@ -472,11 +453,4 @@
                         </td>
                         
                         <td class="auto-style18">
-                            &nbsp;U
-                        </td>
-                    </tr>
-                </table>
-            </asp:Panel>
-        </form>
-    </body>
-</html>
+                            &nbsp;U </td></tr></table></asp:Panel></form></body></html>

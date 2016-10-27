@@ -133,9 +133,9 @@ D:\PROJET\CALEPINAGE\scrs\PR3\bin\fr\System.Web.Optimization.resources.dll
 D:\PROJET\CALEPINAGE\scrs\PR3\bin\fr\System.Web.Providers.resources.dll
 D:\PROJET\CALEPINAGE\scrs\PR3\bin\fr\Microsoft.AspNet.Membership.OpenAuth.resources.dll
 D:\PROJET\CALEPINAGE\scrs\PR3\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
-D:\PROJET\CALEPINAGE\scrs\PR3\obj\Debug\PR3.csprojResolveAssemblyReference.cache
 D:\PROJET\CALEPINAGE\scrs\PR3\obj\Debug\PR3.dll
 D:\PROJET\CALEPINAGE\scrs\PR3\obj\Debug\PR3.pdb
+D:\PROJET\CALEPINAGE\scrs\PR3\obj\Debug\PR3.csprojResolveAssemblyReference.cache
 D:\PROJET\calepinage\srcs\PR3\bin\x64\liblept172.dll
 D:\PROJET\calepinage\srcs\PR3\bin\x64\libtesseract304.dll
 D:\PROJET\calepinage\srcs\PR3\bin\x86\liblept172.dll
@@ -179,5 +179,6 @@ D:\PROJET\calepinage\srcs\PR3\bin\fr\System.Web.Optimization.resources.dll
 D:\PROJET\calepinage\srcs\PR3\bin\fr\System.Web.Providers.resources.dll
 D:\PROJET\calepinage\srcs\PR3\bin\fr\Microsoft.AspNet.Membership.OpenAuth.resources.dll
 D:\PROJET\calepinage\srcs\PR3\bin\fr\Microsoft.AspNet.FriendlyUrls.resources.dll
+D:\PROJET\calepinage\srcs\PR3\obj\Debug\PR3.csprojResolveAssemblyReference.cache
 D:\PROJET\calepinage\srcs\PR3\obj\Debug\PR3.dll
 D:\PROJET\calepinage\srcs\PR3\obj\Debug\PR3.pdb

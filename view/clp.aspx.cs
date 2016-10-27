@@ -9,7 +9,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using tessnet2;
 using System.Drawing.Text;
-
 using Image = System.Drawing.Image;
 
 namespace PR3.view
@@ -18,8 +17,8 @@ namespace PR3.view
     {
         private static int nbC;
         private static string mot;
-        private const int maxWidth = 750;
-        private const int maxHeight = 750;        
+        private const int maxWidth = 500;
+        private const int maxHeight = 500;        
         private static string let;
 
         public DataTable tableAH = null;
@@ -35,7 +34,6 @@ namespace PR3.view
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if ((!SessionModel.Connecté) || (SessionModel.SessionID != Session.SessionID))
             {
                 SessionModel.Reset();
@@ -61,46 +59,16 @@ namespace PR3.view
             nbLettreTxt.Visible = false;
             ImagModel bdd = new ImagModel();
             bdd.AddContact(imagC);
-            ReadOnly();
+
+            if (!Page.IsPostBack)
+            {
+                Rad1.Checked = true;
+                rad1Change();
+            }
+            DropDownList1_SelectedIndexChanged1(null, null);
+            fonter();
         }
 
-        public void ReadOnly()
-        {
-
-            Button2.Visible = false;
-            txtpuis.ReadOnly = true;
-            txtpuis.BackColor = Color.WhiteSmoke;
-
-            test.ReadOnly = true;
-            test.BackColor = Color.WhiteSmoke;
-            haute.ReadOnly = true;
-            haute.BackColor = Color.WhiteSmoke;
-            txtespace.ReadOnly =false;
-            txtespace.BackColor = Color.White;
-
-          //  DropDownList2.Enabled = false;
-          //  Button1.Enabled = false;
-
-            nbLed.ReadOnly = true;
-            nbLed.BackColor = Color.WhiteSmoke;
-
-            nbP.ReadOnly = true;
-            nbP.BackColor = Color.WhiteSmoke;
-
-            nbV.ReadOnly = true;
-            nbV.BackColor = Color.WhiteSmoke;
-            Text.ReadOnly = true;
-            Text.BackColor = Color.WhiteSmoke;
-            FU1.Visible= false;
-            FU1.BackColor = Color.WhiteSmoke;
-            Label14.BackColor = Color.WhiteSmoke;
-            Label4.Visible = true;
-          //  btnUpLoad.Enabled = false;
-            btnUpLoad.Visible = false;
-           // btnUpLoad.Visible = false;
-
-            btnUpLoad.ForeColor = Color.White;
-        }
         public void AllImg()
         {
             TextBox4.ReadOnly = false;
@@ -298,7 +266,14 @@ namespace PR3.view
                 }
             }
         }
+        private bool IsText()
+        {
 
+            bool retval = true;
+            if (Text.Text.Length < 1) retval = false;
+       
+            return retval;
+        }
         protected void btnUpLoad_Click(object sender, EventArgs e)
         {
             if (btnUpLoad.Text == "Charger...")
@@ -366,12 +341,12 @@ namespace PR3.view
                     else
                     {
                         lblMsg.Text = "Veuillez selectionner un fichier!";
-                        FU1.Visible = true;
+
                         btnUpLoad.Enabled = true;
                         Text.ReadOnly = true;
                         Text.BackColor = Color.White;
                         btnUpLoad.Enabled = true;
-                        Label4.Visible = true;
+                        
                         btnUpLoad.Visible = true;
                         lblMsg.Visible = true;
                     }
@@ -380,26 +355,36 @@ namespace PR3.view
                 else
                 {
                     lblMsg.Text = "Veuillez selectionner un fichier";
-                    FU1.Visible = true;
+
                     btnUpLoad.Enabled = true;
                     Text.ReadOnly = true;
                     Text.BackColor = Color.White;
                     btnUpLoad.Enabled = true;
-                    Label4.Visible = true;
+
                     btnUpLoad.Visible = true;
                     lblMsg.Visible = true;
                 }
 
             }
             else {
-                Text.ReadOnly = false;
-                Text.BackColor = Color.White;
-                FU1.Visible = false;
-                btnUpLoad.Enabled = true;
-               // lblMsg.Text = "Veuillez saisie un Text!!";
-                btnUpLoad.Enabled = true;
-                Label4.Visible = true;
-                btnUpLoad.Visible = true;
+                if (IsText())
+                {
+                    Text.ReadOnly = false;
+                    Text.BackColor = Color.White;
+
+                    btnUpLoad.Enabled = true;
+                    // lblMsg.Text = "Veuillez saisie un Text!!";
+                    btnUpLoad.Enabled = true;
+//                    DropDownList2.Enabled = true;
+
+                    btnUpLoad.Visible = true;
+                    insertionText();
+                }
+                else {
+                    ClientScript.RegisterStartupScript(GetType(), "Erreur Crop", "alert('Veuillez saisisser le zone de text ')", true);
+               
+                
+                }
             }
         }
 
@@ -905,21 +890,32 @@ namespace PR3.view
 
         protected void Rad1_CheckedChanged(object sender, EventArgs e)
         {
+            rad1Change();
+        }
+
+        public void vide() {
+        }
+        protected void Rad2_CheckedChanged(object sender, EventArgs e)
+        {
+            rad2Change();
+        }
+        protected void rad1Change()
+        {
             if (Rad1.Checked)
             {
                 btnUpLoad.Text = "Inserer...";
                 panCrop.Visible = false;
                 cropimg.Visible = false;
-                vide();
-                TextBox4.ReadOnly = true;
-                TextBox4.BackColor = Color.WhiteSmoke;
+
+                TextBox4.ReadOnly = false ;
+                TextBox4.BackColor = Color.White;
                 txtpuis.ReadOnly = true;
                 txtpuis.BackColor = Color.WhiteSmoke;
 
                 test.ReadOnly = true;
                 test.BackColor = Color.WhiteSmoke;
-                haute.ReadOnly = true;
-                haute.BackColor = Color.WhiteSmoke;
+                haute.ReadOnly = false;
+                haute.BackColor = Color.White;
                 txtespace.ReadOnly = false;
                 txtespace.BackColor = Color.White;
 
@@ -936,27 +932,22 @@ namespace PR3.view
                 nbV.BackColor = Color.WhiteSmoke;
                 Text.ReadOnly = false;
                 Text.BackColor = Color.White;
-                 FU1.Enabled = false;
+                FU1.Enabled = false;
                 btnUpLoad.Enabled = true;
-                 Label4.Visible = true;
+                Label4.Visible = true;
                 btnUpLoad.Visible = true;
                 lblMsg.Visible = false;
 
+                DropDownList1.Visible = true;
+                Label4.Visible = false;
+                lParcourir.Visible = false;
+                FU1.Visible = false;
+
+                Text.Visible = true;
             }
         }
 
-        public void vide() {
-
-            txtpuis.Text = "";
-            haute.Text = "";
-            nbLed.Text = "";
-            nbP.Text = "";
-            nbV.Text = "";
-            test.Text = "";
-            txtespace.Text = "";
-
-        }
-        protected void Rad2_CheckedChanged(object sender, EventArgs e)
+        protected void rad2Change()
         {
             if (Rad2.Checked)
             {
@@ -987,20 +978,29 @@ namespace PR3.view
                 Text.ReadOnly = true;
                 Text.BackColor = Color.WhiteSmoke;
                 Label4.Visible = true;
-                 FU1.Visible = true;
+                FU1.Visible = true;
                 FU1.Enabled = true;
                 Button1.Enabled = true;
-                FU1.BackColor = Color.White;                
+                FU1.BackColor = Color.White;
                 btnUpLoad.Enabled = true;
                 Text.Text = "";
                 btnUpLoad.Enabled = true;
                 lblMsg.Visible = false;
                 btnUpLoad.Visible = true;
+
+                DropDownList1.Visible = false;
+                Label4.Visible = true;
+                lParcourir.Visible = true;
+                FU1.Visible = true;
+
+                cropimg.Visible=false ;
+                Text.Visible = false;
             }
         }
 
         protected void Text_TextChanged(object sender, EventArgs e)
         {
+
      }
 
         private Font scalling2(Graphics g, String family, string text, int width, int height)
@@ -1020,24 +1020,56 @@ namespace PR3.view
                 //resize width
                 ScaleRatio = (float)width / (float)RealSize.Width;
             }
-            float ScaleFontSize = fontFamily.Size * ScaleRatio * 0.9f;
+            float ScaleFontSize = fontFamily.Size * ScaleRatio;
             return new Font(fontFamily.FontFamily, ScaleFontSize);
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
+
+            //let = Text.Text;
+            //cropimg.Visible = true;
+            //string extension = ".jpg" ;
+            //string filePath = Path.Combine(Server.MapPath("~/crpmg"), "temp1" + extension) ;
+            //string nomFont = "arial" ;
+
+            //Bitmap bitMap = new Bitmap(maxWidth,maxHeight) ;
+
+            //using (Graphics graph = Graphics.FromImage(bitMap))
+            //{
+
+            //    String text = let ;
+            //    Rectangle ImageSize = new Rectangle(0, 0, bitMap.Width, bitMap.Height);
+            //    graph.FillRectangle(Brushes.White, ImageSize);
+
+            //    StringFormat strFormat = new StringFormat();
+
+            //    strFormat.Alignment = StringAlignment.Center;
+            //    strFormat.LineAlignment = StringAlignment.Center;
+
+            //    String temp = Server.MapPath(nomFont);
+
+            //    string r = DropDownList2.SelectedItem.Value ; 
+            //    graph.DrawString(text, new Font(r,20) , Brushes.Black,
+            //    new Rectangle(0, 0, bitMap.Width, bitMap.Height), strFormat);
+            //}
+
+            //bitMap.Save(filePath);
+            //cropimg.Src = "~/crpmg/" + "temp1" + extension;
+        }
+
+        public void insertionText() {
             let = Text.Text;
             cropimg.Visible = true;
-            string extension = ".jpg" ;
-            string filePath = Path.Combine(Server.MapPath("~/crpmg"), "temp1" + extension) ;
-            string nomFont = "arial" ;
+            string extension = ".jpg";
+            string filePath = Path.Combine(Server.MapPath("~/crpmg"), "temp1" + extension);
 
-            Bitmap bitMap = new Bitmap(maxWidth,maxHeight) ;
+            Bitmap bitMap = new Bitmap(maxWidth, maxHeight);
 
             using (Graphics graph = Graphics.FromImage(bitMap))
             {
 
-                String text = let ;
+                String text = let;
                 Rectangle ImageSize = new Rectangle(0, 0, bitMap.Width, bitMap.Height);
                 graph.FillRectangle(Brushes.White, ImageSize);
 
@@ -1046,17 +1078,62 @@ namespace PR3.view
                 strFormat.Alignment = StringAlignment.Center;
                 strFormat.LineAlignment = StringAlignment.Center;
 
-                String temp = Server.MapPath(nomFont);
+                //String temp = Server.MapPath(nomFont);
 
-                graph.DrawString(text, scalling2(graph, temp, text, bitMap.Width, bitMap.Height), Brushes.Black,
+                string r = DropDownList1.SelectedItem.Value; //scalling2(graph, temp, text, bitMap.Width, bitMap.Height)
+                graph.DrawString(text, scalling2(graph, r, text, bitMap.Width, bitMap.Height), Brushes.Black,
                 new Rectangle(0, 0, bitMap.Width, bitMap.Height), strFormat);
             }
 
             bitMap.Save(filePath);
             cropimg.Src = "~/crpmg/" + "temp1" + extension;
           
-         
+        
+        
         }
+
+        private void fonter()
+        {
+            InstalledFontCollection installedFont = new InstalledFontCollection();
+            FontFamily[] fonts = installedFont.Families;
+            foreach (var item in fonts)
+            {
+                var i = new ListItem(item.Name);
+                i.Attributes.Add("style", "font-family:" + item.Name);
+                DropDownList1.Items.Add(i);
+
+            }
+//            DropDownList1.SelectedIndex = 0;
+//            DropDownList1_SelectedIndexChanged1(null, null);
+        }
+         private void a()
+         {
+            
+         }
+
+     
+         protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
+         {
+            
+         }
+
+         protected void DropDownList1_SelectedIndexChanged1(object sender, EventArgs e)
+         {
+             try
+             {
+                 DropDownList1.Font.Name = DropDownList1.SelectedItem.Value;
+             }
+             catch { }
+
+             for (int i = 0; i < DropDownList1.Items.Count; i++)
+             {
+                 var item = DropDownList1.Items[i];
+                 item.Attributes.Add("style", "font-family: " + item.Text);
+             }
+             if (Text.Text != "")
+                insertionText();
+         }
+     
     }
 }
 

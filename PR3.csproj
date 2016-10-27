@@ -169,7 +169,7 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
-    <Content Include="crpmg\ALire.txt" />
+    <Content Include="crpmg\dontRemove.txt" />
     <Content Include="Images\deconnexion.png" />
     <Content Include="Images\images.jpg" />
     <Content Include="Images\zoommoins.png" />
@@ -179,14 +179,6 @@
     <Content Include="img\crayon.png" />
     <Content Include="img\grenat.PNG" />
     <Content Include="img\Gris.PNG" />
-    <Content Include="img\jaune.PNG" />
-    <Content Include="img\noir.PNG" />
-    <Content Include="img\orange.PNG" />
-    <Content Include="img\rogner.png" />
-    <Content Include="img\rouge.PNG" />
-    <Content Include="img\selecteur texte.png" />
-    <Content Include="img\Vert.PNG" />
-    <Content Include="img\violet.PNG" />
     <Content Include="library\css\bootstrap-theme.css" />
     <Content Include="library\css\bootstrap-theme.min.css" />
     <Content Include="library\css\bootstrap.css" />
@@ -254,6 +246,7 @@
     <Content Include="library\font\triple_dot_digital-7.ttf" />
     <None Include="Properties\PublishProfiles\deploy-PR3x64.pubxml" />
     <None Include="Properties\PublishProfiles\deploypr3.pubxml" />
+    <None Include="Properties\PublishProfiles\deplx64.pubxml" />
     <None Include="Properties\PublishProfiles\pack.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
