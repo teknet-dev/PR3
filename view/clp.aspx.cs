@@ -199,7 +199,7 @@ namespace PR3.view
             string confilename, confilepath;
             string fileName = Path.GetFileName(imgUpload.ImageUrl);
             string filePath = Path.Combine(Server.MapPath("~/img"), fileName);
-
+            btnCrop.Visible = false;
             if (File.Exists(filePath))
             {
                 System.Drawing.Image orgImg = System.Drawing.Image.FromFile(filePath);
@@ -253,7 +253,7 @@ namespace PR3.view
                         btnUpLoad.Enabled = true;
                         Label4.Visible = false;
                         btnUpLoad.Visible = true;
-
+                       
                     }
                 }
                 catch (FormatException)
@@ -385,6 +385,14 @@ namespace PR3.view
                
                 
                 }
+                Text.ReadOnly = false;
+                Text.BackColor = Color.White;
+                FU1.Visible = false;
+                btnUpLoad.Enabled = true;
+               // lblMsg.Text = "Veuillez saisir un Text!!";
+                btnUpLoad.Enabled = true;
+                Label4.Visible = true;
+                btnUpLoad.Visible = true;
             }
         }
 
@@ -693,7 +701,7 @@ namespace PR3.view
                         else
                         {
 
-                            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez selectionner le type de LED');</script>");
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez remplir le formulaire');</script>");
                             btnUpLoad.Visible = true;
                             FU1.Enabled = true;
                             Label4.Visible = true;
@@ -733,9 +741,9 @@ namespace PR3.view
                     Label4.Visible = true;
                 }
             }
-            else { 
-            
-               Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez selectionner le type de LED');</script>");
+            else {
+
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez remplir le formulaire');</script>");
                btnUpLoad.Visible = true;
                Label4.Visible = true;
                AllImg();

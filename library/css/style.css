@@ -118,7 +118,7 @@
 
         .image {
             margin-top: -60%;
-            margin-left: 80%;
+            margin-left: 82%;
         }
 
         .msbt {
@@ -147,9 +147,9 @@
         }
 
         .resultat {
-            margin-left: 52%;
-            margin-top: 9%;
-            display: block;
+            margin-left: 31%;
+            margin-top: 5.5%;
+            position:absolute;
         }
 
         .text-Oubli {
@@ -172,20 +172,20 @@
         }
 
         #form1 {
-            height: 594px;
-            width: 982px;
+            height: 615px;
+            width: 943px;
             margin-left: 0px;
-        }
+            margin-right: 0px;
+}
         
         #rectangle {
             border-style: solid;
             border-color: inherit;
             border-width: 1px;
-            margin-left: 51.5%;
+            margin-left: 43.5%;
             margin-top: -43.7%;
-            width: 110%;
-            height: 100%;
-            margin-bottom: -10%;
+            width: 122%;
+            height: 97%;
         }
 
         #Select1 {
@@ -298,3 +298,38 @@
             margin-top: 60%;
         }   
        }
+         @media only screen and (width: 1600px) {
+        .responsiveresul {
+            left: 0%;
+            top: 91%;
+            position:absolute
+         }   
+       }
+
+         @media only screen and (max-width: 768px) {
+        .embed-responsive-item {
+            margin-left: 20%;
+            margin-top: -90%;
+        }  
+       }
+         
+        @media only screen and (min-width: 768px) {
+        .responsiveresul{
+            margin-top: -52%;
+            margin-left: 18%;
+         } 
+        }
+        @media only screen and (max: 768px) {
+         #btnCrop {
+            margin-left: 30%;
+            margin-top: -48%;
+        }  
+       }
+        @media only screen and (min-width: 415px) {
+         #btnCrop {
+            margin-left: 30%;
+            margin-top: -89%;
+        }  
+       }
+       
+ 

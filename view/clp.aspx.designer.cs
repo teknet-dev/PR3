@@ -617,6 +617,16 @@ namespace PR3.view {
         
         /// <summary>
         /// btnCrop control.
+        /// Contrôle Panel.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel;
+        
+        /// <summary>
+        /// Contrôle btnCrop.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -671,6 +681,7 @@ namespace PR3.view {
         
         /// <summary>
         /// Label2 control.
+        /// Contrôle Label2.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
