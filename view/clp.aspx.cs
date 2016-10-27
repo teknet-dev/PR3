@@ -17,8 +17,8 @@ namespace PR3.view
     {
         private static int nbC;
         private static string mot;
-        private const int maxWidth = 500;
-        private const int maxHeight = 500;        
+        private const int maxWidth = 300;
+        private const int maxHeight = 300;        
         private static string let;
 
         public DataTable tableAH = null;
@@ -239,7 +239,7 @@ namespace PR3.view
                     lblMsg.Visible = false;
                     if (Rad2.Checked)
                     {
-                        AllImg();
+                      //  AllImg();
                         FU1.Visible = true;
                         btnUpLoad.Enabled = true;
                         Label4.Visible = true;
@@ -313,26 +313,26 @@ namespace PR3.view
                             panCrop.Visible = true;
                             btnCrop.Visible = true;
                             cropimg.Visible = false;
-                            FU1.Visible = true;
+                         //   FU1.Visible = true;
                             lblMsg.Visible = true;
                             btnUpLoad.Enabled = true;
                             Text.ReadOnly = true;
                             Text.BackColor = Color.White;
                             lblMsg.Visible = false;
                             btnUpLoad.Enabled = true;
-                            Label4.Visible = true;
+                          //  Label4.Visible = true;
                             btnUpLoad.Visible = true;
 
                         }
                         catch
                         {
                             lblMsg.Text = "Erreur! Veuillez réessayer!";
-                            FU1.Visible = true;
+                         //   FU1.Visible = true;
                             btnUpLoad.Enabled = true;
                             Text.ReadOnly = true;
                             Text.BackColor = Color.White;
                             btnUpLoad.Enabled = true;
-                            Label4.Visible = true;
+                         //   Label4.Visible = true;
                             btnUpLoad.Visible = true;
                             lblMsg.Visible = true;
 
@@ -385,14 +385,14 @@ namespace PR3.view
                
                 
                 }
-                Text.ReadOnly = false;
-                Text.BackColor = Color.White;
-                FU1.Visible = false;
-                btnUpLoad.Enabled = true;
-               // lblMsg.Text = "Veuillez saisir un Text!!";
-                btnUpLoad.Enabled = true;
-                Label4.Visible = true;
-                btnUpLoad.Visible = true;
+               // Text.ReadOnly = false;
+               // Text.BackColor = Color.White;
+               // FU1.Visible = false;
+               // btnUpLoad.Enabled = true;
+               //// lblMsg.Text = "Veuillez saisir un Text!!";
+               // btnUpLoad.Enabled = true;
+               // Label4.Visible = true;
+               // btnUpLoad.Visible = true;
             }
         }
 
@@ -595,10 +595,10 @@ namespace PR3.view
         {
           //  Rad2.Checked = false;
             AllImg();
-            FU1.Enabled = true;
+            //FU1.Enabled = true;
             //   btnUpLoad.Enabled = true;
             btnUpLoad.Visible = true;
-            Label4.Visible = true;
+            //Label4.Visible = true;
             btnUpLoad.Visible = true;
             if (IsvAL())
             
@@ -606,8 +606,8 @@ namespace PR3.view
                 btnUpLoad.Visible = true;
                 if (Rad1.Checked || Rad2.Checked)
                 {
-                    FU1.Enabled = true;
-                    Label4.Visible = true;
+                    //FU1.Enabled = true;
+                    //Label4.Visible = true;
                     btnUpLoad.Visible = true;
                     string confilename, confilepath;
                     string fileName = Path.GetFileName(imgUpload.ImageUrl);
@@ -618,10 +618,10 @@ namespace PR3.view
                         if (Rad2.Checked)
                         {
                             AllImg();
-                            FU1.Enabled = true;
+                            //FU1.Enabled = true;
                          //   btnUpLoad.Enabled = true;
                             btnUpLoad.Visible = true;
-                            Label4.Visible = true;
+                            //Label4.Visible = true;
                           
 
                         }
@@ -629,9 +629,9 @@ namespace PR3.view
                         {
 
                         //    AllText();
-                            FU1.Enabled = true;
-                           // btnUpLoad.Enabled = true;
-                            Label4.Visible = true;
+                           // FU1.Enabled = true;
+                           //// btnUpLoad.Enabled = true;
+                           // Label4.Visible = true;
                             btnUpLoad.Visible = true;
                             DropDownList2.Enabled = true;
 
@@ -703,13 +703,13 @@ namespace PR3.view
 
                             Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez remplir le formulaire');</script>");
                             btnUpLoad.Visible = true;
-                            FU1.Enabled = true;
-                            Label4.Visible = true;
+                            //FU1.Enabled = true;
+                            //Label4.Visible = true;
                             AllImg();
                             FU1.Enabled = true;
                             //   btnUpLoad.Enabled = true;
                             btnUpLoad.Visible = true;
-                            Label4.Visible = true;
+                            //Label4.Visible = true;
                         }
                     }
                     else
@@ -718,13 +718,13 @@ namespace PR3.view
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Choisissez le mode que vous aimerez utiliser');</script>");
 
                         btnUpLoad.Visible = true;
-                        FU1.Enabled = true;
-                        Label4.Visible = true;
+                        //FU1.Enabled = true;
+                        //Label4.Visible = true;
                         AllImg();
                         FU1.Enabled = true;
                         //   btnUpLoad.Enabled = true;
                         btnUpLoad.Visible = true;
-                        Label4.Visible = true;
+                        //Label4.Visible = true;
                     }
                 }
                 else
@@ -732,35 +732,28 @@ namespace PR3.view
 
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Choisissez le mode que vous aimerez utiliser');</script>!');</script>");
                     btnUpLoad.Visible = true;
-                    FU1.Enabled = true;
-                    Label4.Visible = true;
+                    //FU1.Enabled = true;
+                    //Label4.Visible = true;
                     AllImg();
                     FU1.Enabled = true;
                     //   btnUpLoad.Enabled = true;
                     btnUpLoad.Visible = true;
-                    Label4.Visible = true;
+                    //Label4.Visible = true;
                 }
             }
             else {
-
+                Text.ReadOnly = false;
+                Text.BackColor = Color.White;
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", "<script>alert('Veuillez remplir le formulaire');</script>");
                btnUpLoad.Visible = true;
-               Label4.Visible = true;
-               AllImg();
-               FU1.Enabled = true;
-               //   btnUpLoad.Enabled = true;
+           
+            
+
                btnUpLoad.Visible = true;
-               Label4.Visible = true;
+            
             }
 
-            //    nbLettreTxt;
-            //    Point point = new Point(0,0);
-            //Point position=point;
-            //while (position.X == 0) { 
-            
-            //position=
-            //}
-
+          
 
 
         }
