@@ -200,15 +200,9 @@
                    
                </asp:Label></td><td class="auto-style26">
                       <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
-                <asp:Label ID="Label4" runat="server" class="btn btn-primary " style="width: 298px; height: 35px;">
-                    <span >Parcourir...</span>
-                    <asp:FileUpload ID="FU1" runat="server" Class="file" data-icon="false" /> 
-                   
-               </asp:Label> 
+             
              </td>
-             <td class="auto-style26">
-                      <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" style="width: 298px; height: 35px;margin-left: 10%;"/>  
-             </td>
+          
            </tr>
                         
                         <tr>
