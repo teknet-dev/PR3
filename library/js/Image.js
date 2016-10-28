@@ -7,6 +7,7 @@ $(function () {
     $("#imgUpload").Jcrop({
         onSelect: croparea
     });
+   
 });
 
 function croparea(c) {
