@@ -60,10 +60,6 @@
     <IncludeIisSettings>true</IncludeIisSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ControlExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\ControlExtensions.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -77,12 +73,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>MYSQL\MySql.Web.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Fonts\PresentationCore.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Core" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -172,7 +173,199 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
-    <Content Include="crpmg\ALire.txt" />
+    <Content Include="crpmg\dontRemove.txt" />
+    <Content Include="Fonts\AcadEref.ttf" />
+    <Content Include="Fonts\AdobeFangsongStd-Regular.otf" />
+    <Content Include="Fonts\AdobeFanHeitiStd-Bold.otf" />
+    <Content Include="Fonts\AdobeGothicStd-Bold.otf" />
+    <Content Include="Fonts\AdobeHeitiStd-Regular.otf" />
+    <Content Include="Fonts\AdobeKaitiStd-Regular.otf" />
+    <Content Include="Fonts\AdobeMingStd-Light.otf" />
+    <Content Include="Fonts\AdobeMyungjoStd-Medium.otf" />
+    <Content Include="Fonts\AdobeSongStd-Light.otf" />
+    <Content Include="Fonts\AGENCYB.TTF" />
+    <Content Include="Fonts\AGENCYR.TTF" />
+    <Content Include="Fonts\ANTQUAB.TTF" />
+    <Content Include="Fonts\app850.fon" />
+    <Content Include="Fonts\arial.ttf" />
+    <Content Include="Fonts\arialbd.ttf" />
+    <Content Include="Fonts\ARIALN.TTF" />
+    <Content Include="Fonts\ARIALNB.TTF" />
+    <Content Include="Fonts\ariblk.ttf" />
+    <Content Include="Fonts\ARLRDBD.TTF" />
+    <Content Include="Fonts\BASKVILL.TTF" />
+    <Content Include="Fonts\BAUHS93.TTF" />
+    <Content Include="Fonts\BELL.TTF" />
+    <Content Include="Fonts\BELLB.TTF" />
+    <Content Include="Fonts\BERNHC.TTF" />
+    <Content Include="Fonts\bgothl.ttf" />
+    <Content Include="Fonts\bgothm.ttf" />
+    <Content Include="Fonts\BirchStd.otf" />
+    <Content Include="Fonts\BKANT.TTF" />
+    <Content Include="Fonts\BOD_B.TTF" />
+    <Content Include="Fonts\BOD_BLAR.TTF" />
+    <Content Include="Fonts\BOD_CB.TTF" />
+    <Content Include="Fonts\BOD_CR.TTF" />
+    <Content Include="Fonts\BOD_PSTC.TTF" />
+    <Content Include="Fonts\BOD_R.TTF" />
+    <Content Include="Fonts\BOOKOS.TTF" />
+    <Content Include="Fonts\BOOKOSB.TTF" />
+    <Content Include="Fonts\BRITANIC.TTF" />
+    <Content Include="Fonts\BRLNSB.TTF" />
+    <Content Include="Fonts\BRLNSDB.TTF" />
+    <Content Include="Fonts\BRLNSR.TTF" />
+    <Content Include="Fonts\BROADW.TTF" />
+    <Content Include="Fonts\Calibri Bold.ttf" />
+    <Content Include="Fonts\calibri.ttf" />
+    <Content Include="Fonts\CalibriL.ttf" />
+    <Content Include="Fonts\CALIFB.TTF" />
+    <Content Include="Fonts\CALIFR.TTF" />
+    <Content Include="Fonts\CALIST.TTF" />
+    <Content Include="Fonts\CALISTB.TTF" />
+    <Content Include="Fonts\cambriab.ttf" />
+    <Content Include="Fonts\Candara.ttf" />
+    <Content Include="Fonts\Candarab.ttf" />
+    <Content Include="Fonts\CENSCBK.TTF" />
+    <Content Include="Fonts\CENTAUR.TTF" />
+    <Content Include="Fonts\CENTURY.TTF" />
+    <Content Include="Fonts\comic.ttf" />
+    <Content Include="Fonts\comicbd.ttf" />
+    <Content Include="Fonts\consola.ttf" />
+    <Content Include="Fonts\consolab.ttf" />
+    <Content Include="Fonts\COPRGTB.TTF" />
+    <Content Include="Fonts\COPRGTL.TTF" />
+    <Content Include="Fonts\corbel.ttf" />
+    <Content Include="Fonts\corbelb.ttf" />
+    <Content Include="Fonts\cour.ttf" />
+    <Content Include="Fonts\courbd.ttf" />
+    <Content Include="Fonts\coure.fon" />
+    <Content Include="Fonts\couri.ttf" />
+    <Content Include="Fonts\dutch.ttf" />
+    <Content Include="Fonts\dutcheb.ttf" />
+    <Content Include="Fonts\ELEPHNT.TTF" />
+    <Content Include="Fonts\ENGR.TTF" />
+    <Content Include="Fonts\ERASBD.TTF" />
+    <Content Include="Fonts\ERASDEMI.TTF" />
+    <Content Include="Fonts\ERASMD.TTF" />
+    <Content Include="Fonts\eurro___.ttf" />
+    <Content Include="Fonts\eurr____.ttf" />
+    <Content Include="Fonts\Exo2-Black.otf" />
+    <Content Include="Fonts\Exo2-BlackItalic.otf" />
+    <Content Include="Fonts\Exo2-Bold.otf" />
+    <Content Include="Fonts\Exo2-ExtraBold.otf" />
+    <Content Include="Fonts\Exo2-ExtraBoldItalic.otf" />
+    <Content Include="Fonts\Exo2-ExtraLight.otf" />
+    <Content Include="Fonts\Exo2-Light.otf" />
+    <Content Include="Fonts\Exo2-Medium.otf" />
+    <Content Include="Fonts\Exo2-Regular.otf" />
+    <Content Include="Fonts\Exo2-SemiBold.otf" />
+    <Content Include="Fonts\FELIXTI.TTF" />
+    <Content Include="Fonts\FORTE.TTF" />
+    <Content Include="Fonts\FRABK.TTF" />
+    <Content Include="Fonts\FRABKIT.TTF" />
+    <Content Include="Fonts\FRADM.TTF" />
+    <Content Include="Fonts\FRADMCN.TTF" />
+    <Content Include="Fonts\FRAHV.TTF" />
+    <Content Include="Fonts\framd.ttf" />
+    <Content Include="Fonts\FRAMDCN.TTF" />
+    <Content Include="Fonts\FTLTLT.TTF" />
+    <Content Include="Fonts\GADUGI.TTF" />
+    <Content Include="Fonts\GADUGIB.TTF" />
+    <Content Include="Fonts\GARA.TTF" />
+    <Content Include="Fonts\GARABD.TTF" />
+    <Content Include="Fonts\georgia.ttf" />
+    <Content Include="Fonts\georgiab.ttf" />
+    <Content Include="Fonts\GeosansLight-Oblique.ttf" />
+    <Content Include="Fonts\GeosansLight.ttf" />
+    <Content Include="Fonts\GILBI___.TTF" />
+    <Content Include="Fonts\GILB____.TTF" />
+    <Content Include="Fonts\GILC____.TTF" />
+    <Content Include="Fonts\GILI____.TTF" />
+    <Content Include="Fonts\GILLUBCD.TTF" />
+    <Content Include="Fonts\GILSANUB.TTF" />
+    <Content Include="Fonts\GIL_____.TTF" />
+    <Content Include="Fonts\GLECB.TTF" />
+    <Content Include="Fonts\GLSNECB.TTF" />
+    <Content Include="Fonts\GOTHIC.TTF" />
+    <Content Include="Fonts\GOTHICB.TTF" />
+    <Content Include="Fonts\GOTHICBI.TTF" />
+    <Content Include="Fonts\GOTHICI.TTF" />
+    <Content Include="Fonts\GOUDOS.TTF" />
+    <Content Include="Fonts\GOUDOSB.TTF" />
+    <Content Include="Fonts\GOUDYSTO.TTF" />
+    <Content Include="Fonts\greekc__.ttf" />
+    <Content Include="Fonts\HARNGTON.TTF" />
+    <Content Include="Fonts\HATTEN.TTF" />
+    <Content Include="Fonts\HelveticaNeueLTStd Lt.otf" />
+    <Content Include="Fonts\HoboStd.otf" />
+    <Content Include="Fonts\HTOWERT.TTF" />
+    <Content Include="Fonts\HTOWERTI.TTF" />
+    <Content Include="Fonts\impact.ttf" />
+    <Content Include="Fonts\isocpeui.ttf" />
+    <Content Include="Fonts\isocpeur.ttf" />
+    <Content Include="Fonts\isocteui.ttf" />
+    <Content Include="Fonts\isocteur.ttf" />
+    <Content Include="Fonts\ITCKRIST.TTF" />
+    <Content Include="Fonts\LBRITE.TTF" />
+    <Content Include="Fonts\LBRITED.TTF" />
+    <Content Include="Fonts\LeagueSpartan-Bold.otf" />
+    <Content Include="Fonts\LFAX.TTF" />
+    <Content Include="Fonts\LFAXD.TTF" />
+    <Content Include="Fonts\LSANS.TTF" />
+    <Content Include="Fonts\LSANSD.TTF" />
+    <Content Include="Fonts\LTYPE.TTF" />
+    <Content Include="Fonts\LTYPEB.TTF" />
+    <Content Include="Fonts\LTYPEO.TTF" />
+    <Content Include="Fonts\lucon.ttf" />
+    <Content Include="Fonts\l_10646.ttf" />
+    <Content Include="Fonts\MAIAN.TTF" />
+    <Content Include="Fonts\MesquiteStd.otf" />
+    <Content Include="Fonts\micross.ttf" />
+    <Content Include="Fonts\monos.ttf" />
+    <Content Include="Fonts\monosb.ttf" />
+    <Content Include="Fonts\monosbi.ttf" />
+    <Content Include="Fonts\monosi.ttf" />
+    <Content Include="Fonts\MyriadPro-Bold.otf" />
+    <Content Include="Fonts\MyriadPro-BoldCond.otf" />
+    <Content Include="Fonts\MyriadPro-Cond.otf" />
+    <Content Include="Fonts\MyriadPro-Regular.otf" />
+    <Content Include="Fonts\MyriadPro-Semibold.otf" />
+    <Content Include="Fonts\NIRMALA.TTF" />
+    <Content Include="Fonts\OCRAEXT.TTF" />
+    <Content Include="Fonts\OCRAStd.otf" />
+    <Content Include="Fonts\ONYX.TTF" />
+    <Content Include="Fonts\OratorStd-Slanted.otf" />
+    <Content Include="Fonts\OratorStd.otf" />
+    <Content Include="Fonts\pala.ttf" />
+    <Content Include="Fonts\palab.ttf" />
+    <Content Include="Fonts\PLAYBILL.TTF" />
+    <Content Include="Fonts\PoplarStd.otf" />
+    <Content Include="Fonts\PresentationCore.dll" />
+    <Content Include="Fonts\REFSAN.TTF" />
+    <Content Include="Fonts\romab___.ttf" />
+    <Content Include="Fonts\romai___.ttf" />
+    <Content Include="Fonts\romantic.ttf" />
+    <Content Include="Fonts\romant__.ttf" />
+    <Content Include="Fonts\sanssb__.ttf" />
+    <Content Include="Fonts\sanss___.ttf" />
+    <Content Include="Fonts\SCHLBKB.TTF" />
+    <Content Include="Fonts\serife.fon" />
+    <Content Include="Fonts\SHOWG.TTF" />
+    <Content Include="Fonts\sserife.fon" />
+    <Content Include="Fonts\swissck.ttf" />
+    <Content Include="Fonts\swissek.ttf" />
+    <Content Include="Fonts\swissk.ttf" />
+    <Content Include="Fonts\times.ttf" />
+    <Content Include="Fonts\timesbd.ttf" />
+    <Content Include="Fonts\trebuc.ttf" />
+    <Content Include="Fonts\trebucbd.ttf" />
+    <Content Include="Fonts\trebucit.ttf" />
+    <Content Include="Fonts\umath.ttf" />
+    <Content Include="Fonts\verdana.ttf" />
+    <Content Include="Fonts\verdanab.ttf" />
+    <Content Include="Fonts\vga850.fon" />
+    <Content Include="Fonts\vgafix.fon" />
+    <Content Include="Fonts\vgasys.fon" />
     <Content Include="Images\deconnexion.png" />
     <Content Include="Images\images.jpg" />
     <Content Include="Images\zoommoins.png" />
@@ -255,9 +448,11 @@
     <Content Include="library\font\advanced_dot_digital-7.ttf" />
     <Content Include="library\font\enhanced_dot_digital-7.ttf" />
     <Content Include="library\font\triple_dot_digital-7.ttf" />
-    <None Include="Properties\PublishProfiles\deployPR3-64.pubxml" />
+    <None Include="Properties\PublishProfiles\deploy-PR3x64.pubxml" />
     <None Include="Properties\PublishProfiles\deploypr3.pubxml" />
+    <None Include="Properties\PublishProfiles\deplx64.pubxml" />
     <None Include="Properties\PublishProfiles\pack.pubxml" />
+    <None Include="Properties\PublishProfiles\sqdfqsdfqsd.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -404,6 +599,9 @@
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
