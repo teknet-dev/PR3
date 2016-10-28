@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-<head id="Head1" runat="server">    
+<head id="Head1" runat="server">
     <title></title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -29,20 +29,54 @@
     
 
 <script type="text/javascript">
-    function UploadFile(fileUpload) {
-        if (fileUpload.value != '') {
-            document.getElementById("<%=btnUpLoad.ClientID %>").click();
+    $(document).ready(function () {
+        var $chkAll = $("#Rad1");
+        var btnNext = $("#<%  %>");
+        var state = 'disabled';
+
+        // update all checkboxes and submit button when check all is toggled
+        $chkAll.click(function () {
+            if ($chkAll.is(':checked')) {
+              
+                $("#FU1").attr("disabled", "disabled");
+
+            }
+        
+           // setButtonState();
+        });
+
+        // when any checkbox is clicked, update submit button state
+        $boxes.click(function () {
+            setButtonState();
+        });
+
+        // if any checkbox is checked, button is enabled, else disabled.
+        function setButtonState() {
+            var state = 'disabled';
+            $boxes.each(function () {
+                if ($(this).is(':checked')) {
+                    state = '';
+                    return false;
+                }
+            });
+            $('[id$="BtnAddCart"]').attr('disabled', state);
         }
-    }
+
+    });
+
+
+    
+  
+
+
+
 </script>
 
 
 </head>
     <body class="body2">
         <form id="form1" runat="server">
-
             <asp:ScriptManager ID="ScriptManager1" runat="server"/>
-
             <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
@@ -54,12 +88,13 @@
                         
                         <a class="navbar-brand" href="#"> SMART CALEPINAGE 
                             <asp:Panel ID="Panel5" runat="server" Height="30px" style="margin-left: 989px">
-                                <asp:UpdatePanel ID="UpdatePanel6" runat="server">
-                                    <ContentTemplate>
-                                        <asp:ImageButton ID="ImageButton2"  ImageUrl="~/Images/deconnexion.png" style="height:48px; margin-left: 100%; margin-top: -26px" type="image" runat="server" OnClick="ImageButton2_Click" />
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </asp:Panel>                      
+                          <asp:UpdatePanel ID="UpdatePanel6" runat="server">
+                                <ContentTemplate>
+                                <asp:ImageButton ID="ImageButton2"  ImageUrl="~/Images/deconnexion.png" style="height:48px; margin-left: 100%; margin-top: -26px" type="image" runat="server" OnClick="ImageButton2_Click" />
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                             </asp:Panel>    
+                                              
                         </a>
                         
                         <a class="navbar-brand" href="#"> 
@@ -80,7 +115,7 @@
             <br />
             
             <br /> 
-                
+
             <asp:Panel ID="Panel3" runat="server" style="margin-left: 25%; margin-top: -2%" Width="657px">
                 <table class="auto-style1">
                     <tr>
@@ -143,36 +178,32 @@
 
                     <table>
                         <tr>
-                            <td class="auto-style24">
-                                <asp:TextBox ID="Text" class="form-control" runat="server" Width="331px" style="margin: 1px 0 0 -64px;" CausesValidation="True" OnTextChanged="Text_TextChanged" />
-                                <asp:TextBox ID="TextChemin" class="form-control" runat="server" Width="331px" style="margin: 1px 0 0 -64px;" CausesValidation="True" ReadOnly="true" />
-                            </td>
-                            
-                            <td class="auto-style24" style="margin-right:20%">
-                                <asp:DropDownList class="form-control" ID="DropDownList1" runat="server" AutoPostBack="True" Height="32px" Width="232px" CausesValidation="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1"></asp:DropDownList>
-                            </td
-                                >
-                            <td class="auto-style24"></td>
-                            
-                            <td class="auto-style24">
-                               &nbsp;</td>
-                               <td class="auto-style26">
-                               &nbsp;&nbsp;&nbsp;
-                            </td>
+               <td class="auto-style24">
+                   <asp:TextBox ID="Text" class="form-control" runat="server" Width="394px" CausesValidation="True" OnTextChanged="Text_TextChanged"></asp:TextBox>
+               </td>
+                <td class="auto-style24" style="margin-right:20%">
+                    <asp:DropDownList class="form-control" ID="DropDownList1" runat="server" AutoPostBack="True" Height="32px" Width="232px" CausesValidation="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1"></asp:DropDownList>
+               </td>
+             <td class="auto-style24">
+              </td>
+               <td class="auto-style24">
+                   <asp:Button ID="Button2" runat="server" class=" btn btn-primary" Text="Inserer.." OnClick="Button2_Click" />
+               </td>
+                 <td class="auto-style26">
+                  &nbsp;&nbsp;&nbsp;
+               </td>
 
-                            <td class="auto-style26">
-                                <asp:Label ID="Label4" runat="server" class="btn btn-primary " Visible="false">
-                                    <asp:Label runat="server" ID="lParcourir" Text="Parcourir..." Visible="false"/>
-                                    
-                                    <asp:FileUpload ID="FU1" runat="server" Class="file" data-icon="false" Visible="false" onchange="UploadFile(this);"/> 
+             <td class="auto-style26">
+                <asp:Label ID="Label4" runat="server" class="btn btn-primary ">
+                    <span id="gg">Parcourir...</span>
+                    <asp:FileUpload ID="FU1" runat="server" Class="file" data-icon="false" /> 
                    
-                                </asp:Label>
-                            </td>
-                            
-                            <td class="auto-style26">
-                                <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
-                            </td>
-                        </tr>
+               </asp:Label> 
+             </td>
+             <td class="auto-style26">
+                      <asp:Button ID="btnUpLoad"  runat="server" Text="Charger..." class="btn btn-primary" OnClick="btnUpLoad_Click" Height="34px" style="margin-left:20%"/>  
+             </td>
+           </tr>
                         
                         <tr>
                             <td class="auto-style25">
@@ -194,13 +225,17 @@
 
                 <tr>
                 <td class="radio1">
-                    &nbsp;&nbsp;&nbsp; <asp:RadioButton ID="Rad1" runat="server" OnCheckedChanged="Rad1_CheckedChanged"  Text="Text" AutoPostBack="true"  GroupName="measurementSystem" />
+                    &nbsp;&nbsp;&nbsp;
+                   <asp:RadioButton ID="Rad1" runat="server" OnCheckedChanged="Rad1_CheckedChanged"  Text="Text" AutoPostBack="true"  GroupName="measurementSystem" />
                 </td>
                 <td class="radio2">
                    <asp:RadioButton ID="Rad2" runat="server" OnCheckedChanged="Rad2_CheckedChanged"  Text="Images,Logo,Symbole.."  AutoPostBack="true"  GroupName="measurementSystem"/>
                 </td>
                 <td>
-                    &nbsp;</td></tr><tr>
+                    &nbsp;</td>
+
+               </tr>
+                    <tr>
                         <td class="auto-style19">
                             <div class="form-group">
                                 <asp:Label ID="Label10" runat="server" Text="Epaisseur" />
@@ -341,21 +376,24 @@
                         <td class="auto-style19">
                             <asp:DropDownList  class="form-control" ID="DropDownList2" runat="server" Width="280px" Height="40px" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
                                 <asp:ListItem>Simple</asp:ListItem>
+
                                 <asp:ListItem>Double</asp:ListItem>
+
                                 <asp:ListItem>Triple</asp:ListItem>
                             </asp:DropDownList>
                         </td>
-
                     </tr>
+                    
                     <tr>
                         <td class="auto-style19" />
                         
                         <td class="auto-style19">
-                            <asp:Button ID="Button1" runat="server" class=" btn btn-primary" OnClick="Button1_Click" Text="Calcul" Width="280px" Height="40px" />
+                            
+                               <asp:Button ID="Button1" runat="server" class=" btn btn-primary" OnClick="Button1_Click" Text="Calcul" Width="280px" Height="40px" />
+                           
                         </td>
                     </tr>
                 </table>
-                
             </asp:Panel>
 
             <asp:Panel ID="Panel2" runat="server" class="crop">
@@ -364,35 +402,46 @@
             
             <div id="rectangle" class="form-control">        
                 <a id="minusBtn" onclick="minus()" style="cursor: pointer;">
-                    <img src="../Images/zoommoins.png" style="height: 5%;margin-left: 5%;" /> </a>&nbsp;
+                    <img src="../Images/zoommoins.png" style="height: 5%;margin-left: 5%;" />
+                </a>
                 
-                &nbsp; <a id="plusBtn" onclick="plus()" style="cursor: pointer;"><img src="../Images/zoomplus.png" style="height: 5%;" /> </a></div><asp:Panel ID="panCrop" runat="server" visible="false">
+                &nbsp;
+                
+                &nbsp;
+                
+                <a id="plusBtn" onclick="plus()" style="cursor: pointer;">
+                    <img src="../Images/zoomplus.png" style="height: 5%;" />
+                </a>
+            </div>
+            
+            <asp:Panel ID="panCrop" runat="server" visible="false">
                 <table  class="image">
                     <tr>
                         <td>      
                             <asp:Image ID="imgUpload" runat="server" style="margin-top: -100%" />
                         </td>
-                     
                     </tr>
-                </table> 
-               
-            </asp:Panel>
-           
-            <asp:Panel ID="Panel" runat="server">
-                <table class="resultat" style="left: 0%; top: 91%; position: absolute;">
+                    
                     <tr>
-                        <td>
-                             <asp:Button class=" btn btn-primary" ID="btnCrop" runat="server" OnClick="btnCrop_Click1" Text="Redimensionner"  visible="false" style="height:40px;width:280px; margin-left: 132%; margin-top: -50%;" />
+                        <td> 
+                            <asp:Button class=" btn btn-primary" ID="btnCrop" runat="server" OnClick="btnCrop_Click1" Text="Redimensionner"  visible="false" style="height:40px;width:280px;    margin-left: 16%;margin-top: 5%;" />
+                        </td>
                         
-                             <asp:HiddenField ID="X" runat="server" />
+                        <td >
+                            <asp:HiddenField ID="X" runat="server" />
                             
-                             <asp:HiddenField ID="Y" runat="server" />
+                            <asp:HiddenField ID="Y" runat="server" />
                             
-                             <asp:HiddenField ID="W" runat="server" />
+                            <asp:HiddenField ID="W" runat="server" />
                             
-                             <asp:HiddenField ID="H" runat="server" />
+                            <asp:HiddenField ID="H" runat="server" />
                         </td>
                     </tr>
+                </table>
+            </asp:Panel>
+            
+            <asp:Panel ID="Panel" runat="server">
+                <table class="resultat">
                     <tr>
                         <td class="auto-style22">
                             <asp:Label ID="Label2" runat="server" Text="R&eacute;sultats" style="" Font-Overline="False" Font-Size="Large" Font-Underline="True" />
@@ -409,7 +458,11 @@
                         </td>
                         
                         <td class="auto-style18">
-                            &nbsp;Modules </td></tr><tr>
+                            &nbsp;Modules
+                        </td>
+                    </tr>
+                    
+                    <tr>
                         <td class="auto-style22">
                             <asp:Label ID="pw" runat="server" Text="Puissance Totale" />
                         </td>
@@ -419,7 +472,11 @@
                         </td>
                         
                         <td class="auto-style18">
-                            &nbsp;Watts </td></tr><tr>
+                            &nbsp;Watts
+                        </td>
+                    </tr>
+                    
+                    <tr>
                         <td class="auto-style22">
                             <asp:Label ID="alim" runat="server" Text="Alimentation" />
                         </td>
@@ -429,8 +486,7 @@
                         </td>
                         
                         <td class="auto-style18">
-                            &nbsp;U 
-
+                            &nbsp;U
                         </td>
                     </tr>
                 </table>
